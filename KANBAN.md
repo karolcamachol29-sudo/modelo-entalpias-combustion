@@ -1,7 +1,7 @@
 # 📌 TABLERO KANBAN AUTOMATIZADO
 **Proyecto:** Predicción de Entalpías de Combustión Mediante Machine Learning  
 **Responsable:** Karol Paola Camacho López (Facultad de Ingeniería Química — BUAP)  
-**Última Sincronización:** 2026-09-04 01:18:16  
+**Última Sincronización:** 2026-09-04 07:26:50  
 **Progreso General:** 16.7% (2/12 entregables cerrados)
 
 ---
