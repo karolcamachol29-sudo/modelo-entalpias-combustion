@@ -1,0 +1,1089 @@
+\documentclass[11pt,letterpaper]{report}
+
+% ==============================================================================
+% PAQUETES DE CONFIGURACIÓN BÁSICA Y TIPOGRAFÍA
+% ==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+% Reconfiguracion de nombres en espanol (compatible universal)
+\addto\captionsenglish{
+  \renewcommand{\contentsname}{Tabla de Contenidos}
+  \renewcommand{\chaptername}{Capítulo}
+  \renewcommand{\tablename}{Tabla}
+  \renewcommand{\figurename}{Figura}
+}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% Geometría de página equilibrada para manual técnico
+\usepackage[left=2.5cm, right=2.5cm, top=2.8cm, bottom=2.8cm]{geometry}
+
+% Paquetes matemáticos y químicos
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{mathtools}
+
+% Tablas profesionales y diseño
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{enumitem}
+
+% Colores elegantes de ingeniería
+\usepackage[table,xcdraw]{xcolor}
+\definecolor{buapblue}{RGB}{0, 59, 112}      % Azul institucional clásico
+\definecolor{deepcyan}{RGB}{0, 128, 128}     % Verde azulado petróleo
+\definecolor{darkgray}{RGB}{45, 52, 54}      % Gris carbón de lectura
+\definecolor{alertred}{RGB}{192, 57, 43}     % Rojo alerta metodológica
+\definecolor{codegreen}{RGB}{39, 174, 96}    % Verde comentarios
+\definecolor{codeblue}{RGB}{41, 128, 185}    % Azul palabras clave
+\definecolor{codegray}{RGB}{127, 140, 141}   % Gris para números
+\definecolor{codebg}{RGB}{248, 249, 250}     % Fondo claro para código
+\definecolor{boxbg}{RGB}{240, 244, 248}      % Fondo cajas de texto
+\definecolor{exercisebg}{RGB}{254, 249, 231} % Fondo suave para ejercicios
+
+% Cajas estilizadas para notas, conceptos, alertas y ejercicios
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{conceptbox}[1]{
+    colback=boxbg,
+    colframe=buapblue,
+    fonttitle=\bfseries\color{white},
+    title=#1,
+    sharp corners=downhill,
+    arc=3mm,
+    boxrule=1pt,
+    left=4mm, right=4mm, top=3mm, bottom=3mm
+}
+
+\newtcolorbox{warningbox}[1]{
+    colback=white,
+    colframe=alertred,
+    fonttitle=\bfseries\color{white},
+    title=#1,
+    sharp corners=downhill,
+    arc=3mm,
+    boxrule=1.2pt,
+    left=4mm, right=4mm, top=3mm, bottom=3mm
+}
+
+\newtcolorbox{protocolbox}[1]{
+    colback=white,
+    colframe=deepcyan,
+    fonttitle=\bfseries\color{white},
+    title=#1,
+    sharp corners=downhill,
+    arc=3mm,
+    boxrule=1pt,
+    left=4mm, right=4mm, top=3mm, bottom=3mm
+}
+
+\newtcolorbox{exercisebox}[1]{
+    colback=exercisebg,
+    colframe=buapblue!80!black,
+    fonttitle=\bfseries\color{white},
+    title={Ejercicio Pedagógico: #1},
+    sharp corners=downhill,
+    arc=3mm,
+    boxrule=1pt,
+    left=4mm, right=4mm, top=3mm, bottom=3mm
+}
+
+% Formato de listados de código fuente con syntax highlighting
+\usepackage{listings}
+\lstdefinestyle{estilopython}{
+    backgroundcolor=\color{codebg},
+    commentstyle=\color{codegreen}\itshape,
+    keywordstyle=\color{codeblue}\bfseries,
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{alertred},
+    basicstyle=\ttfamily\footnotesize\color{darkgray},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=8pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    frame=single,
+    rulecolor=\color{codeblue!30}
+}
+\lstset{style=estilopython}
+
+% Encabezados y pies de página estilizados
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\nouppercase{\leftmark}}
+\fancyhead[R]{\small\bfseries\color{buapblue} Karol Paola Camacho López}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Hipervínculos interactivos
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=buapblue,
+    citecolor=deepcyan,
+    urlcolor=codeblue,
+    pdftitle={Manual Didáctico: Predicción de Entalpías de Combustión con Machine Learning - Karol Paola Camacho López},
+    pdfauthor={Karol Paola Camacho López}
+}
+
+% Formato de títulos de capítulos y secciones
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\color{buapblue}}
+  {\filleft\Huge\textbf{CAPÍTULO \thechapter}}{1ex}
+  {\titlerule[1.5pt]\vspace{2ex}\LARGE}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+
+% ==============================================================================
+% DOCUMENTO PRINCIPAL
+% ==============================================================================
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% PORTADA INSTITUCIONAL Y PERSONALIZADA
+% ------------------------------------------------------------------------------
+\begin{titlepage}
+    \begin{center}
+        \vspace*{0.3cm}
+        {\LARGE \textbf{BENEMÉRITA UNIVERSIDAD AUTÓNOMA DE PUEBLA}}\\[0.3cm]
+        {\Large \textbf{FACULTAD DE INGENIERÍA QUÍMICA}}\\[0.2cm]
+        {\large Laboratorio de Termodinámica y Modelado Predictivo Molecular}\\[1.2cm]
+
+        \begin{tcolorbox}[colback=buapblue!5,colframe=buapblue,arc=2mm,boxrule=1.5pt]
+            \centering\vspace{0.3cm}
+            {\huge \bfseries \color{buapblue} MANUAL DIDÁCTICO DE FORMACIÓN PROGRESIVA}\\[0.4cm]
+            {\Large \bfseries Predicción de Entalpías Estándar de Combustión Mediante Machine Learning}\\[0.3cm]
+            {\small \textit{De las Leyes Termodinámicas Clásicas al Modelado Predictivo de Alto Rendimiento}}\vspace{0.3cm}
+        \end{tcolorbox}
+
+        \vspace{1.2cm}
+
+        {\large \textbf{Guía Integral de Aprendizaje, Ecuaciones, Código y Roadmap}}\\[0.3cm]
+        {\normalsize Diseñado especialmente para la alumna:}\\[0.2cm]
+        {\Large \bfseries \color{buapblue} KAROL PAOLA CAMACHO LÓPEZ}\\[0.2cm]
+        {\normalsize Estudiante de Ingeniería Química $\cdot$ FIQ BUAP}\\[1.0cm]
+
+        \vfill
+
+        \begin{minipage}{0.88\textwidth}
+            \centering
+            \textbf{Enfoque Pedagógico:}\\
+            Acompañamiento docente en Termodinámica Química, Ciencia de Datos y Machine Learning\\
+            \vspace{0.3cm}
+            \textbf{Objetivo Central de Aprendizaje:}\\
+            Desarrollar y validar un modelo autónomo de regresión supervisada para la predicción de entalpías estándar de combustión ($\Delta H_c^\circ$) a partir de descriptores moleculares y fisicoquímicos, fundamentado en la literatura termodinámica rigurosa.\\
+            \vspace{0.3cm}
+            \textbf{Horizonte de Formación:}\\
+            Fase Actual: Modelo Predictivo de Entalpías de Combustión (Septiembre -- Noviembre 2026)\\
+            Meta Mayor: Transición al Modelado de Equilibrio Químico (10 de Diciembre de 2026)
+        \end{minipage}
+
+        \vspace{0.8cm}
+        {\normalsize Heroica Puebla de Zaragoza, México $\cdot$ Septiembre 2026}
+    \end{center}
+\end{titlepage}
+
+% ------------------------------------------------------------------------------
+% TABLA DE CONTENIDOS
+% ------------------------------------------------------------------------------
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------------------
+% PREFACIO: CARTA DEL PROFESOR A KAROL PAOLA
+% ------------------------------------------------------------------------------
+\chapter*{Carta del Profesor a Karol Paola}
+\addcontentsline{toc}{chapter}{Carta del Profesor a Karol Paola}
+
+Estimada Karol Paola:
+
+Bienvenida formalmente a este apasionante proyecto formativo en la Facultad de Ingeniería Química de nuestra universidad. Estás a punto de cruzar un puente fundamental para la ingeniería del siglo XXI: conectar los principios inmutables de la \textbf{Termodinámica Clásica} con la potencia predictiva del \textbf{Machine Learning}.
+
+Sé muy bien que adentrarse en la inteligencia artificial y la ciencia de datos puede generar incertidumbre al principio. Hay una avalancha de términos nuevos: hiperparámetros, regresiones regularizadas, sobreajuste, matrices de dispersión, validación cruzada. Quiero que mantengas la calma y recuerdes siempre este principio pedagógico que guiará cada una de nuestras sesiones:
+\begin{center}
+    \textit{«El algoritmo es solo una calculadora avanzada de patrones estadísticos; la física y la química son las que dictan si el resultado tiene sentido o no.»}
+\end{center}
+
+Tu meta en esta primera etapa no es construir sistemas difusos ni memorizar decenas de algoritmos que no aplican a nuestro caso. Tu objetivo es claro, nítido y medible: \textbf{diseñar, entrenar, auditar y validar tu propio modelo predictivo de entalpía estándar de combustión ($\Delta H_c^\circ$)}, comprendiendo cada dato, cada ecuación termodinámica y cada línea de código.
+
+No necesitas aprender todo Python de golpe ni dominar enciclopedias de estadística para comenzar. Trabajaremos bajo la metodología de \textbf{Aprendizaje Just-in-Time (JIT)}:
+\begin{enumerate}[leftmargin=*]
+    \item Estudiarás la ley física exacta del fenómeno (¿por qué la combustión libera calor?, ¿cómo mide la bomba calorimétrica?, ¿cómo se expresa matemáticamente?).
+    \item Entenderás cómo traducir esa física a números que una computadora pueda procesar (masa molar, balance de oxígeno, conteo de heteroátomos).
+    \item Aprenderás el comando específico de la librería adecuada (\texttt{pandas}, \texttt{numpy}, \texttt{chempy}, \texttt{scikit-learn}).
+    \item Resolverás un ejercicio conceptual y lo aplicarás inmediatamente en tu propio cuaderno de trabajo.
+\end{enumerate}
+
+Este manual ha sido redactado como si estuviéramos sentados en el cubículo revisando tus dudas paso a paso. Úsalo como tu guía de cabecera. Pregunta todo lo que no quede claro, ejecuta cada celda de código por ti misma y disfruta el proceso de convertirte en una ingeniera química con dominio real de la ciencia de datos.
+
+\vspace{0.6cm}
+\begin{flushright}
+    \textbf{Tu Profesor y Mentor de Proyecto}\\
+    \textit{Laboratorio de Termodinámica y Modelado Molecular}\\
+    Facultad de Ingeniería Química $\cdot$ BUAP
+\end{flushright}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% CAPÍTULO 1: TERMODINÁMICA FUNDAMENTAL Y LEYES DE LA COMBUSTIÓN
+% ------------------------------------------------------------------------------
+\chapter{Leyes Termodinámicas y Fenomenología de la Combustión}
+
+Karol Paola, antes de solicitarle a un algoritmo de Machine Learning que prediga un número, debemos entender qué significa físicamente ese número. En este capítulo desglosaremos cada ley fundamental, cada variable de estado y cada ecuación que rige la liberación de energía en forma de calor.
+
+\section{La Ley Cero: El Concepto Físico de Temperatura}
+
+\subsection{Enunciado Físico y Sentido Experimental}
+Si dos sistemas termodinámicos $A$ y $B$ se encuentran individualmente en equilibrio térmico con un tercer sistema $C$ (el termómetro calorimétrico), entonces los sistemas $A$ y $B$ están en equilibrio térmico entre sí:
+\begin{equation}
+    (T_A = T_C) \;\land\; (T_B = T_C) \implies T_A = T_B
+\end{equation}
+
+\noindent\textbf{¿Por qué le importa esto a tu modelo predictivo?}  
+Porque en termoquímica todas las propiedades estándar se reportan a una temperatura de referencia idéntica: \textbf{$T^\circ = 298.15\text{ K}$ ($25.00^\circ\text{C}$)}. Si comparáramos una entalpía de combustión medida a $25^\circ\text{C}$ con otra medida a $100^\circ\text{C}$, el modelo aprendería un patrón falso, pues estaría mezclando la energía de reacción con el calor sensible ($C_p \Delta T$) de las sustancias.
+
+\section{La Primera Ley: Conservación de Energía y el Origen de la Entalpía}
+
+\subsection{Energía Interna ($U$), Calor ($Q$) y Trabajo ($W$)}
+La Primera Ley postula que la energía del universo es constante: no se crea ni se destruye, solo se transforma. Para un sistema cerrado en reposo:
+\begin{equation}
+    dU = \delta Q - \delta W
+\end{equation}
+donde $U$ es la \textbf{energía interna} (suma de la energía cinética traslacional, rotacional, vibracional y la energía potencial electrostática de los enlaces covalentes e interacciones intermoleculares).
+
+El trabajo cuasiestático de expansión o compresión de volumen frente a una presión externa $P$ se define como:
+\begin{equation}
+    \delta W = P\,dV \quad \Longrightarrow \quad dU = \delta Q - P\,dV
+\end{equation}
+
+\subsection{Deducción Matemática Rigurosa de la Entalpía ($H = U + PV$)}
+En la mayoría de los reactores industriales, mecheros y llamas abiertas, las reacciones químicas ocurren a \textbf{presión constante} (la presión atmosférica circundante, $P = \text{constante} \implies dP = 0$).
+
+Si integramos la Primera Ley a presión constante:
+\begin{equation}
+    \Delta U = Q_p - P\,\Delta V \quad \Longrightarrow \quad Q_p = \Delta U + P\,\Delta V
+\end{equation}
+Para evitar tener que calcular el cambio de volumen $\Delta V$ en cada reacción química, los termodinámicos definieron una nueva propiedad compuesta llamada \textbf{Entalpía ($H$)}:
+\begin{equation}
+    H \equiv U + PV
+\end{equation}
+Diferenciando esta definición:
+\begin{equation}
+    dH = dU + d(PV) = dU + P\,dV + V\,dP
+\end{equation}
+Sustituyendo la Primera Ley ($dU = \delta Q - P\,dV$):
+\begin{equation}
+    dH = (\delta Q - P\,dV) + P\,dV + V\,dP = \delta Q + V\,dP
+\end{equation}
+Bajo condición \textbf{isobárica} ($dP = 0$):
+\begin{equation}
+    dH = \delta Q_p \quad \Longrightarrow \quad \Delta H = Q_p
+\end{equation}
+
+\begin{conceptbox}{Lección Clave del Profesor}
+La entalpía ($\Delta H$) no es un concepto místico: es simplemente el \textbf{calor absorbido o liberado por una reacción química cuando se lleva a cabo a presión constante}.
+\begin{itemize}
+    \item Si $\Delta H < 0$: El sistema libera calor hacia el entorno $\longrightarrow$ \textbf{Reacción Exotérmica} (Combustión).
+    \item Si $\Delta H > 0$: El sistema absorbe calor del entorno $\longrightarrow$ \textbf{Reacción Endotérmica}.
+\end{itemize}
+\end{conceptbox}
+
+\begin{exercisebox}{1.1: Calor Isobárico vs Cambio de Energía Interna}
+\textbf{Problema:} Se quema $1\text{ mol}$ de metano gaseoso ($CH_4$) a $P = 1.0\text{ bar}$ y $T = 298.15\text{ K}$ según la reacción:
+$$CH\_{4(g)} + 2\,O\_{2(g)} \longrightarrow CO\_{2(g)} + 2\,H\_2O\_{(l)}$$
+Experimentalmente se mide una variación de entalpía $\Delta H^\circ = -890.8\text{ kJ/mol}$. Calcula el calor intercambiado a presión constante ($Q_p$) y la variación de energía interna ($\Delta U^\circ$). Considera comportamiento de gas ideal para los gases y volumen despreciable para el agua líquida ($R = 8.314\text{ J/(mol}\cdot\text{K)}$).
+
+\vspace{0.2cm}\noindent\textbf{Solución Paso a Paso:}
+\begin{enumerate}
+    \item \textbf{Cálculo de $Q_p$:} Como la presión es constante, por definición directa:
+    $$Q\_p = \Delta H^\circ = -890.8\text{ kJ/mol}$$
+    \item \textbf{Cálculo del cambio de moles gaseosos ($\Delta n_g$):}
+    $$\Delta n\_g = n\_{\text{gases, productos}} - n\_{\text{gases, reactivos}} = 1\text{ mol } (CO\_2) - [1\text{ mol } (CH\_4) + 2\text{ mol } (O\_2)] = 1 - 3 = -2\text{ mol}$$
+    \item \textbf{Relación entre $\Delta H$ y $\Delta U$:}
+    $$\Delta H = \Delta U + \Delta(PV) \approx \Delta U + \Delta n\_g R T$$
+    $$\Delta U = \Delta H - \Delta n\_g R T$$
+    \item \textbf{Sustitución numérica con cuidado de unidades:}
+    $$\Delta n\_g R T = (-2\text{ mol}) \cdot \left(8.314 \times 10^{-3}\text{ kJ/(mol}\cdot\text{K)}\right) \cdot (298.15\text{ K}) = -4.958\text{ kJ}$$
+    $$\Delta U = -890.8\text{ kJ} - (-4.958\text{ kJ}) = -885.84\text{ kJ/mol}$$
+\end{enumerate}
+\textit{Conclusión pedagógica:} La energía liberada como calor a presión constante ($-890.8\text{ kJ}$) es mayor en magnitud que la variación de energía interna ($-885.8\text{ kJ}$) porque la atmósfera realizó un trabajo de compresión ($P\Delta V < 0$) sobre el sistema al reducirse el número de moles gaseosos.
+\end{exercisebox}
+
+\section{La Segunda Ley: Espontaneidad y la Energía Libre de Gibbs}
+
+\subsection{Entropía ($S$) e Irreversibilidad}
+La combustión completa de un hidrocarburo es un proceso macroscópicamente irreversible: jamás observamos que el dióxido de carbono y el agua líquida se recombinen espontáneamente a temperatura ambiente para regenerar gasolina y oxígeno molecular. La Segunda Ley establece que en cualquier proceso espontáneo en un sistema aislado, la entropía total del universo aumenta:
+\begin{equation}
+    \Delta S_{\text{universo}} = \Delta S_{\text{sistema}} + \Delta S_{\text{alrededores}} > 0
+\end{equation}
+
+\subsection{La Ecuación de Gibbs: $\Delta G^\circ = \Delta H^\circ - T\Delta S^\circ$}
+Para un sistema cerrado a temperatura y presión constantes, el calor cedido a los alrededores es $-\Delta H_{\text{sistema}}$, por lo que $\Delta S_{\text{alrededores}} = -\frac{\Delta H_{\text{sistema}}}{T}$. Sustituyendo:
+\begin{equation}
+    \Delta S_{\text{universo}} = \Delta S_{\text{sistema}} - \frac{\Delta H_{\text{sistema}}}{T} > 0
+\end{equation}
+Multiplicando por $-T$:
+\begin{equation}
+    -T \Delta S_{\text{universo}} = \Delta H_{\text{sistema}} - T \Delta S_{\text{sistema}} < 0
+\end{equation}
+Se define la \textbf{Energía Libre de Gibbs ($G$)} como:
+\begin{equation}
+    G \equiv H - TS \quad \Longrightarrow \quad \Delta G^\circ = \Delta H^\circ - T\Delta S^\circ
+\end{equation}
+Un proceso es termodinámicamente espontáneo a $T$ y $P$ constantes si y solo si $\Delta G < 0$. Como las reacciones de combustión liberan una cantidad inmensa de calor ($\Delta H_c^\circ \ll 0$), el término entálpico domina abrumadoramente, haciendo que $\Delta G_c^\circ$ sea intensamente negativo ($\approx -800$ a $-10000\text{ kJ/mol}$).
+
+\subsection{Conexión con el Equilibrio Químico ($K_{eq}$)}
+En la Fase final de tu formación (hacia el 10 de diciembre de 2026), relacionarás la energía libre con la constante de equilibrio químico mediante la ecuación de van 't Hoff:
+\begin{equation}
+    \Delta G^\circ = -RT \ln K_{eq} \quad \Longrightarrow \quad K_{eq} = \exp\left(-\frac{\Delta G^\circ}{RT}\right)
+\end{equation}
+Al ser $\Delta G_c^\circ$ enormemente negativo, $K_{eq} \ggg 10^{50}$, lo que demuestra termodinámicamente que la combustión procede al 100\% hasta agotar el reactivo limitante.
+
+\section{Estequiometría de Combustión Completa y Ley de Hess}
+
+\subsection{La Ecuación Estequiométrica General}
+Para cualquier molécula orgánica neutra formada por carbono, hidrógeno, oxígeno y nitrógeno con fórmula molecular $C_a H_b O_c N_d$:
+\begin{equation}
+    C_a H_b O_c N_d + \nu_{O_2} O_{2(g)} \longrightarrow a\, CO_{2(g)} + \frac{b}{2}\, H_2O_{(l)} + \frac{d}{2}\, N_{2(g)}
+\end{equation}
+Realizando el balance de materia elemental para el oxígeno:
+\begin{equation}
+    c + 2\,\nu_{O_2} = 2a + \frac{b}{2} \quad \Longrightarrow \quad \nu_{O_2} = a + \frac{b}{4} - \frac{c}{2}
+\end{equation}
+
+\begin{warningbox}{¡Regla de Oro en Termodinámica de Combustión!}
+En las convenciones del NIST y la IUPAC a $298.15\text{ K}$, el agua resultante de la combustión estándar se define en \textbf{estado líquido} ($H_2O_{(l)}$). Esto corresponde al \textbf{Poder Calorífico Superior (PCS)}. En calderas industriales se suele considerar agua vapor ($H_2O_{(g)}$, Poder Calorífico Inferior, PCI). Para el modelo de Machine Learning, entrenaremos siempre con el estándar científico internacional: \textbf{agua líquida}.
+\end{warningbox}
+
+\subsection{Cálculo de Entalpía por la Ley de Hess}
+La entalpía es una \textbf{función de estado}: su cambio neto depende únicamente del estado inicial y del estado final, no de la trayectoria seguida. Por tanto:
+\begin{equation}
+    \Delta H_c^\circ = \sum \nu_{\text{prod}} \Delta H_{f,\text{prod}}^\circ - \sum \nu_{\text{react}} \Delta H_{f,\text{react}}^\circ
+\end{equation}
+Para la combustión de $C_a H_b O_c N_d$:
+\begin{equation}
+    \Delta H_c^\circ = a \Delta H_f^\circ(CO_{2(g)}) + \frac{b}{2} \Delta H_f^\circ(H_2O_{(l)}) + \frac{d}{2} \Delta H_f^\circ(N_{2(g)}) - \Delta H_f^\circ(\text{mol\'ecula}) - \nu_{O_2} \Delta H_f^\circ(O_{2(g)})
+\end{equation}
+Recordando que por convención termodinámica $\Delta H_f^\circ$ de los elementos puros en su forma más estable es cero ($\Delta H_f^\circ(O_{2(g)}) = 0$, $\Delta H_f^\circ(N_{2(g)}) = 0$):
+\begin{equation}
+    \Delta H_c^\circ = a (-393.51\text{ kJ/mol}) + \frac{b}{2} (-285.83\text{ kJ/mol}) - \Delta H_f^\circ(\text{mol\'ecula})
+\end{equation}
+
+\begin{exercisebox}{1.2: Balance y Cálculo de Entalpía por Ley de Hess}
+\textbf{Problema:} La entalpía estándar de formación del etanol líquido ($C_2H_5OH_{(l)}$) a $298.15\text{ K}$ es $\Delta H_f^\circ = -277.69\text{ kJ/mol}$.
+\begin{enumerate}
+    \item Escribe y balancea la reacción de combustión completa.
+    \item Calcula teóricamente su entalpía estándar de combustión ($\Delta H_c^\circ$).
+    \item Calcula la entalpía específica liberada por gramo de etanol ($M = 46.07\text{ g/mol}$).
+\end{enumerate}
+
+\vspace{0.2cm}\noindent\textbf{Solución Paso a Paso:}
+\begin{enumerate}
+    \item \textbf{Fórmula molecular del etanol:} $C_2 H_6 O_1 \implies a=2, b=6, c=1, d=0$.
+    $$\nu\_{O\_2} = a + \frac{b}{4} - \frac{c}{2} = 2 + \frac{6}{4} - \frac{1}{2} = 2 + 1.5 - 0.5 = 3$$
+    Reacción balanceada:
+    $$C\_2H\_5OH\_{(l)} + 3\,O\_{2(g)} \longrightarrow 2\,CO\_{2(g)} + 3\,H\_2O\_{(l)}$$
+    \item \textbf{Aplicación de la Ley de Hess:}
+    $$\Delta H\_c^\circ = 2\cdot(-393.51) + 3\cdot(-285.83) - (-277.69)$$
+    $$\Delta H\_c^\circ = -787.02 - 857.49 + 277.69 = -1366.82\text{ kJ/mol}$$
+    \item \textbf{Entalpía específica (Poder calorífico por gramo):}
+    $$\Delta h\_c^\circ = \frac{\Delta H\_c^\circ}{M} = \frac{-1366.82\text{ kJ/mol}}{46.07\text{ g/mol}} = -29.67\text{ kJ/g}$$
+\end{enumerate}
+\end{exercisebox}
+
+\section{Calorimetría de Bomba de Mahler: El Origen Experimental de tus Datos}
+
+La enorme mayoría de los datos tabulares que procesarás provienen históricamente de un \textbf{calorímetro de bomba de Mahler}:
+
+\subsection{El Principio de Medición a Volumen Constante}
+La bomba calorimétrica es un recipiente de acero inoxidable de paredes gruesas sumergido en una masa conocida de agua. Como la bomba está sellada herméticamente:
+\begin{equation}
+    dV = 0 \quad \Longrightarrow \quad W = \int P\,dV = 0
+\end{equation}
+Por la Primera Ley ($dU = \delta Q - \delta W$):
+\begin{equation}
+    \Delta U_c = Q_v
+\end{equation}
+El calor desprendido eleva la temperatura del agua y de los componentes del calorímetro:
+\begin{equation}
+    Q_v = - C_{\text{calor\'imetro}} \cdot \Delta T_{\text{corregido}}
+\end{equation}
+donde $C_{\text{calor\'imetro}}$ (la capacidad calorífica efectiva o equivalente en agua del equipo) se calibra previamente quemando pastillas de ácido benzoico patrón de alta pureza ($\Delta_c u = -26434\text{ J/g}$).
+
+\subsection{Conversión de $\Delta U_c$ a $\Delta H_c^\circ$}
+Como la bomba mide $\Delta U_c$ y no $\Delta H_c$, se aplica la corrección termodinámica:
+\begin{equation}
+    \Delta H_c^\circ = \Delta U_c + \Delta n_g R T + \Delta H_{\text{Washburn}}
+\end{equation}
+donde $\Delta H_{\text{Washburn}}$ agrupa las correcciones por:
+\begin{itemize}[leftmargin=*]
+    \item La no idealidad de los gases reales a $30\text{ bar}$ de presión de oxígeno inicial.
+    \item La energía liberada por el alambre de ignición de platino o níquel-cromo.
+    \item El calor de formación y disolución de trazas de ácido nítrico ($HNO_3$) formado por nitrógeno atmosférico residual.
+\end{itemize}
+
+\section{¿Por qué Requerimos Machine Learning en Lugar de Medir Todo?}
+Podrías preguntarte: si la bomba calorimétrica es tan exacta, ¿por qué no medimos experimentalmente todas las moléculas y nos olvidamos del Machine Learning?
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Demanda de Masa:} Un calorímetro de bomba requiere entre $0.5\text{ g}$ y $1.0\text{ g}$ de sustancia pura. La síntesis orgánica preliminar de fármacos o catalizadores novedosos rinde con frecuencia menos de $10\text{ mg}$.
+    \item \textbf{Costo y Tiempo:} Una sola corrida calorimétrica rigurosa con calibración, repeticiones y correcciones de Washburn toma de 2 a 4 días de trabajo intensivo de laboratorio.
+    \item \textbf{Seguridad Operativa:} Compuestos altamente reactivos, peróxidos, nitratos inestables o sustancias químicas tóxicas no pueden someterse a combustión a $30\text{ bar}$ sin riesgo de daño estructural o peligro para el experimentador.
+\end{enumerate}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% CAPÍTULO 2: CONFIGURACIÓN DEL LABORATORIO DIGITAL
+% ------------------------------------------------------------------------------
+\chapter{Configuración del Laboratorio Digital: PyCharm, Entornos y Git}
+
+Karol Paola, antes de escribir una sola línea de código químico, debemos asegurar que tu espacio digital sea reproducible, ordenado y profesional. Un modelo científico no sirve si solo funciona en una computadora específica.
+
+\section{Estructura Estándar del Repositorio}
+Abre tu explorador de archivos y confirma que la carpeta raíz del proyecto contenga exactamente la siguiente arquitectura de directorios:
+
+\begin{tcolorbox}[colback=codebg,colframe=darkgray,title=Estructura Estandarizada del Proyecto]
+\begin{verbatim}
+Modelo Entalpias de Combustion/
+|-- data/
+|   |-- raw/                  <-- Datos originales intactos (solo lectura)
+|   |   `-- base_entalpias.csv
+|   `-- processed/            <-- Tablas limpias con variables calculadas
+|-- notebooks/
+|   |-- 01_exploracion_inicial.ipynb  <-- Tu cuaderno del primer viernes
+|   `-- 02_limpieza_y_eda.ipynb
+|-- src/                      <-- Modulos Python reutilizables (.py)
+|   |-- __init__.py
+|   `-- funciones_quimicas.py <-- Balance de materia y utilidades
+|-- config/                   <-- Configuraciones del proyecto
+|   |-- matriz_actividades.json
+|   `-- MATRIZ_ACTIVIDADES.md
+|-- reportes/                 <-- Documentos tecnicos y este manual en LaTeX
+|   `-- MANUAL_MAESTRO_PREPARACION.tex
+|-- .gitignore                <-- Archivos excluidos de Git (.venv, cache)
+|-- README.md                 <-- Descripcion oficial del repositorio
+|-- KANBAN.md                 <-- Tablero de actividades sincronizado
+|-- ROADMAP.md                <-- Diagrama cronologico de entrega
+`-- requirements.txt          <-- Lista formal de dependencias y versiones
+\end{verbatim}
+\end{tcolorbox}
+
+\section{Paso a Paso: Configurar el Entorno Virtual en PyCharm}
+
+\begin{protocolbox}{Protocolo 2.1: Entorno Virtual Aislado (.venv)}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Abrir la Carpeta:} Inicia PyCharm, selecciona \textbf{Open} y abre la carpeta \texttt{Modelo Entalpias de Combustion}.
+    \item \textbf{Configurar Intérprete:} Ve a \textbf{File $\longrightarrow$ Settings} (en Linux/Windows) o \textbf{PyCharm $\longrightarrow$ Preferences} (en macOS).
+    \item Despliega \textbf{Project: Modelo Entalpias...} y haz clic en \textbf{Python Interpreter}.
+    \item Haz clic en \textbf{Add Interpreter $\longrightarrow$ Add Local Interpreter...}.
+    \item Selecciona \textbf{Virtualenv Environment} $\longrightarrow$ \textbf{New Environment}.
+    \item Verifica que la carpeta de destino termine en \texttt{.venv} y que el intérprete base sea Python 3.10 o superior. Haz clic en \textbf{OK}.
+\end{enumerate}
+\end{protocolbox}
+
+\section{Instalación de Dependencias desde la Terminal Integrada}
+Abre la pestaña \textbf{Terminal} en la parte inferior de PyCharm. Asegúrate de que el cursor comience con \texttt{(.venv)}. Ejecuta exactamente:
+
+\begin{lstlisting}[language=bash]
+# 1. Actualizar el instalador de paquetes pip
+pip install --upgrade pip
+
+# 2. Instalar el nucleo interactivo para cuadernos Jupyter
+pip install jupyter jupyterlab ipykernel
+
+# 3. Instalar la suite cientifica de calculo y Machine Learning
+pip install numpy pandas chempy matplotlib seaborn scikit-learn
+\end{lstlisting}
+
+\section{Manejo Estricto de Rutas Relativas (Regla de Oro)}
+Jamás escribas rutas absolutas con letras de disco o carpetas personales como:  
+\texttt{pd.read\_csv("C:/Users/Karol/Documents/.../datos.csv")}. Si lo haces, el código fallará inmediatamente cuando se ejecute en la computadora del profesor.
+
+Utiliza siempre \texttt{os.path.join()} o \texttt{pathlib.Path} basándote en la raíz del proyecto:
+\begin{lstlisting}[language=Python]
+import os
+import pandas as pd
+
+# Construir la ruta relativa desde la carpeta notebooks/ hacia data/raw/
+ruta_datos = os.path.join("..", "data", "raw", "base_entalpias.csv")
+df = pd.read_csv(ruta_datos)
+print(f"Dimensiones del dataset cargado: {df.shape[0]} filas, {df.shape[1]} columnas.")
+\end{lstlisting}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% CAPÍTULO 3: NORMA DE ESTANDARIZACIÓN Y TRAZABILIDAD DOCUMENTAL
+% ------------------------------------------------------------------------------
+\chapter{Norma de Estandarización y Trazabilidad Documental}
+
+Karol Paola, para que tu flujo de trabajo sea riguroso y para que las automatizaciones del proyecto reconozcan tus avances de forma determinista, cada entregable producido debe satisfacer la siguiente norma universal de nomenclatura.
+
+\section{Estructura Universal de Nombres de Archivo}
+
+\begin{tcolorbox}[colback=codebg,colframe=buapblue,arc=2mm,boxrule=1pt]
+\centering\large\ttfamily
+[CÓDIGO\_FASE]\_[ID\_ACTIVIDAD]\_[TIPO]\_[DESCRIPTOR]\_[VERSION]\_[ESTADO].[ext]
+\end{tcolorbox}
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabularx}{\textwidth}{c l p{3.5cm} X}
+\toprule
+\textbf{Bloque} & \textbf{Campo} & \textbf{Formato / Valores} & \textbf{Función Técnica en el Sistema} \\
+\midrule
+\rowcolor{codebg}
+\textbf{1} & \texttt{[CÓDIGO\_FASE]} & Prefijo de etapa (ej. \texttt{F0-ENV}, \texttt{F1-DAT}) & Ubica el entregable en la fase cronológica del Roadmap. \\
+\addlinespace
+\textbf{2} & \texttt{[ID\_ACTIVIDAD]} & 3 letras + 2 dígitos (ej. \texttt{ACT01}, \texttt{SIM01}) & Identificador unívoco vinculado a la tarjeta Kanban. \\
+\rowcolor{codebg}
+\textbf{3} & \texttt{[TIPO]} & 3 letras mayúsculas (\texttt{DAT}, \texttt{SCR}, \texttt{NBK}, \texttt{REP}) & Clasifica la naturaleza técnica del archivo. \\
+\addlinespace
+\textbf{4} & \texttt{[DESCRIPTOR]} & Texto en minúsculas en \texttt{snake\_case} & Síntesis temática del entregable (máximo 4 palabras). \\
+\rowcolor{codebg}
+\textbf{5} & \texttt{[VERSION]} & \texttt{vX.Y} (\texttt{v0.1}, \texttt{v1.0}, \texttt{v2.0}) & Versionado semántico ($X$: mayor; $Y$: menor). \\
+\addlinespace
+\textbf{6} & \texttt{[ESTADO]} & \texttt{DRAFT}, \texttt{REV}, \texttt{FINAL} & Determina si el archivo es borrador, revisión o cierre. \\
+\rowcolor{codebg}
+\textbf{Ext} & \texttt{.[ext]} & Extensión (\texttt{.py}, \texttt{.ipynb}, \texttt{.csv}, \texttt{.pdf}) & Formato nativo del software utilizado. \\
+\bottomrule
+\end{tabularx}
+\caption{Parámetros normativos de nomenclatura estricta.}
+\end{table}
+
+\subsection{Prefijos Oficiales de Fase (\texttt{CÓDIGO\_FASE})}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{\texttt{F0-ENV} (Entorno y Setup):} Infraestructura local, Git, entorno virtual \texttt{.venv} y ChemPy.
+    \item \textbf{\texttt{F1-DAT} (Datos y Curaduría):} Adquisición de la base de datos de entalpías y depuración de duplicados.
+    \item \textbf{\texttt{F2-EDA} (Exploración y Descriptores):} Análisis exploratorio de datos (EDA) y cálculo de variables moleculares.
+    \item \textbf{\texttt{F3-MLB} (Machine Learning Base):} Ajuste de modelos lineales (OLS, Ridge) y Random Forest.
+    \item \textbf{\texttt{F4-VAL} (Validación y Residuales):} Validación cruzada $k$-fold y diagnóstico de gráficos residuales.
+    \item \textbf{\texttt{F5-REP} (Benchmarking de Literatura):} Comparación cuantitativa del modelo contra estándares reportados.
+    \item \textbf{\texttt{F6-SIM} (Simulación de Procesos):} Balance termodinámico de combustión completa en DWSIM (\texttt{.dwsim}).
+    \item \textbf{\texttt{F7-EQK} (Transición al Equilibrio):} Cálculo de energía de Gibbs y constantes de equilibrio $K_{eq}(T)$ para diciembre.
+\end{itemize}
+
+\subsection{Expresión Regular (Regex) de Validación}
+Para que el motor de automatización valide formalmente un entregable antes de cerrar una tarea, el nombre de archivo debe coincidir con la siguiente regla lógica:
+\begin{lstlisting}[language=bash]
+^(F[0-7]-[A-Z]{3})_([A-Z]{3}\d{2})_([A-Z]{3})_([a-z0-9_]+)_(v\d+\.\d+)_(DRAFT|REV|FINAL)\.([a-zA-Z0-9]+)$
+\end{lstlisting}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% CAPÍTULO 4: LIBRERÍAS CIENTÍFICAS EXPLICADAS LÍNEA POR LÍNEA
+% ------------------------------------------------------------------------------
+\chapter{Librerías Científicas para Ingeniería Química: Guía Línea por Línea}
+
+En este capítulo analizaremos las herramientas computacionales que utilizarás en tu día a día: NumPy, Pandas, ChemPy, Scikit-Learn y Matplotlib/Seaborn.
+
+\section{NumPy: Arreglos Vectorizados de Alto Rendimiento}
+NumPy implementa arreglos homogéneos contiguos en memoria C (\texttt{ndarray}). Permite procesar millones de cálculos químicos sin recurrir a bucles \texttt{for} en Python.
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+
+# 1. Definir arreglos vectorizados de entalpias molares (kJ/mol) y masas (g/mol)
+entalpias_molares = np.array([-890.8, -1560.7, -2220.0, -2877.6]) # Metano, Etano, Propano, Butano
+masas_molares = np.array([16.04, 30.07, 44.10, 58.12])
+
+# 2. Operacion vectorizada directa: calculo de poder calorifico especifico (kJ/g)
+entalpias_especificas = entalpias_molares / masas_molares
+print("Entalpias especificas (kJ/g):", np.round(entalpias_especificas, 2))
+
+# 3. Estadistica basica sobre el target
+media_dH = np.mean(entalpias_molares)
+desv_std = np.std(entalpias_molares)
+print(f"Promedio: {media_dH:.2f} kJ/mol | Desv. Estandar: {desv_std:.2f} kJ/mol")
+
+# 4. Mascara booleana para filtrar valores extremos
+mascara_alta_energia = entalpias_molares < -2000.0
+print("Compuestos con dH < -2000 kJ/mol:", entalpias_molares[mascara_alta_energia])
+\end{lstlisting}
+
+\section{Pandas: La Tabla de Datos del Ingeniero Químico}
+Un \texttt{DataFrame} es una tabla interactiva en memoria donde las columnas son variables fisicoquímicas (\textit{features}) y las filas son moléculas individuales.
+
+\begin{lstlisting}[language=Python]
+import pandas as pd
+
+# 1. Cargar la base de datos cruda
+df = pd.read_csv('../data/raw/base_entalpias.csv')
+
+# 2. Inspeccion inicial de dimensiones y tipos de columnas
+print("Forma del dataset:", df.shape) # (num_filas, num_columnas)
+print("\nTipos de datos y conteo de nulos:")
+df.info()
+
+# 3. Resumen estadistico de variables numericas (media, std, min, percentiles, max)
+display(df.describe())
+
+# 4. Auditoria y remocion de valores nulos (NaN)
+# REGLA DOCENTE: El target JAMAS se inventa ni se rellena con promedios. Si falta dH, se descarta la fila.
+num_nulos_target = df['dH_combustion'].isnull().sum()
+print(f"Filas con entalpia nula: {num_nulos_target}")
+df_limpio = df.dropna(subset=['dH_combustion']).copy()
+
+# 5. Deteccion y remocion de duplicados moleculares basados en SMILES
+df_limpio = df_limpio.drop_duplicates(subset=['SMILES'])
+
+# 6. Ingenieria de Variables (Feature Engineering): creacion de nuevas columnas utiles
+df_limpio['ratio_C_H'] = df_limpio['num_C'] / df_limpio['num_H']
+\end{lstlisting}
+
+\section{ChemPy: Estequiometría y Balance Automatizado}
+ChemPy es una librería especializada de química computacional que permite extraer masas molares y balancear sistemas estequiométricos mediante álgebra lineal elemental.
+
+\begin{lstlisting}[language=Python]
+from chempy import Substance
+from chempy.chemistry import balance_stoichiometry
+
+# 1. Instanciar una molecula a partir de su formula quimica
+tolueno = Substance.from_formula('C7H8')
+print(f"Masa molar del tolueno: {tolueno.mass:.3f} g/mol")
+print("Composicion elemental (numero atomico: conteo):", tolueno.composition)
+# Salida: {6: 7, 1: 8} -> 7 atomos de Carbono (Z=6) y 8 atomos de Hidrogeno (Z=1)
+
+# 2. Balancear automaticamente la reaccion de combustion completa con O2
+reactivos = {'C7H8', 'O2'}
+productos = {'CO2', 'H2O'}
+
+reac_bal, prod_bal = balance_stoichiometry(reactivos, productos)
+print("\nReaccion de combustion del tolueno balanceada:")
+print(f"{dict(reac_bal)} --> {dict(prod_bal)}")
+# Salida esperada: {'C7H8': 1, 'O2': 9} --> {'CO2': 7, 'H2O': 4}
+\end{lstlisting}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% CAPÍTULO 5: REPRESENTACIÓN MOLECULAR PARA EL MODELO PREDICTIVO
+% ------------------------------------------------------------------------------
+\chapter{Representación Molecular: De la Química a los Números}
+
+Karol Paola, un algoritmo de Machine Learning no entiende de geometrías moleculares tridimensionales ni de resonancia electrónica; únicamente procesa matrices numéricas $\mathbf{X} \in \mathbb{R}^{n \times p}$. En este capítulo aprenderás cómo convertir una molécula orgánica en un vector de números con significado termodinámico.
+
+\section{La Notación SMILES: Moléculas Escritas en Texto}
+El estándar mundial para almacenar moléculas en bases de datos es el formato \textbf{SMILES} (\textit{Simplified Molecular Input Line Entry System}):
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Átomos alifáticos:} Letras mayúsculas según la tabla periódica (\texttt{C, N, O, S, F, Cl, Br, I}). Los hidrógenos se asumen implícitos para satisfacer la valencia del átomo.
+    \item \textbf{Aromaticidad:} Se indica con letras minúsculas. Por ejemplo, el benceno es \texttt{c1ccccc1}.
+    \item \textbf{Tipos de enlace:} Enlace simple implícito; enlace doble con \texttt{=} (ej. etileno \texttt{C=C}); enlace triple con \texttt{\#} (ej. acetileno \texttt{C\#C}).
+    \item \textbf{Ramificaciones:} Se colocan entre paréntesis justo después del átomo al que van enlazadas. Por ejemplo, el isobutano (2-metilpropano) se escribe \texttt{CC(C)C}.
+\end{itemize}
+
+\section{Vector de Descriptores Moleculares y Fisicoquímicos ($\mathbf{x}$)}
+
+Para alimentar nuestro modelo de regresión, cada compuesto $i$ se representará como un vector fila:
+\begin{equation}
+    \mathbf{x}_i = \begin{bmatrix} M_i & n_{C,i} & n_{H,i} & n_{O,i} & n_{N,i} & \nu_{O_2,i} & \text{Ratio}_{C/H,i} & \text{EnlacesRotables}_i & \text{TPSA}_i \end{bmatrix}
+\end{equation}
+
+\noindent\textbf{Justificación termodinámica de cada descriptor:}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Masa Molar ($M$):} Correlaciona directamente con el tamaño molecular y la cantidad total de electrones y núcleos presentes.
+    \item \textbf{Conteo de Carbonos ($n_C$):} Cada carbono se oxida a $CO_2$, liberando aproximadamente $-393.5\text{ kJ/mol}$. Es el principal predictor positivo de la magnitud de la entalpía.
+    \item \textbf{Conteo de Hidrógenos ($n_H$):} Cada dos hidrógenos forman un mol de $H_2O_{(l)}$, liberando $-285.8\text{ kJ/mol}$.
+    \item \textbf{Conteo de Oxígenos ($n_O$):} Los oxígenos presentes en la molécula ya están enlazados parcialmente al carbono o hidrógeno; por tanto, reducen la cantidad de oxígeno externo que se debe consumir y disminuyen la energía neta liberada en la combustión.
+    \item \textbf{Demanda Estequiométrica de Oxígeno ($\nu_{O_2} = a + b/4 - c/2$):} Sintetiza en una sola variable físico-química el potencial redox global de la molécula.
+\end{enumerate}
+
+\begin{exercisebox}{5.1: Construcción de un Vector de Descriptores}
+\textbf{Problema:} Para las siguientes tres moléculas:
+\begin{itemize}
+    \item Molécula A: Metanol (\texttt{CO}, fórmula $CH_4O$)
+    \item Molécula B: Acetona (\texttt{CC(=O)C}, fórmula $C_3H_6O$)
+    \item Molécula C: Ácido acético (\texttt{CC(=O)O}, fórmula $C_2H_4O_2$)
+\end{itemize}
+Calcula manualmente su masa molar ($M$), su conteo atómico ($n_C, n_H, n_O$), su demanda estequiométrica de oxígeno ($\nu_{O_2}$) y su razón $C/H$.
+
+\vspace{0.2cm}\noindent\textbf{Solución:}
+\begin{center}
+\small
+\begin{tabular}{l c c c c c c}
+\toprule
+\textbf{Compuesto} & \textbf{Masa Molar ($M$)} & $n_C$ & $n_H$ & $n_O$ & $\nu_{O_2} = n_C + \frac{n_H}{4} - \frac{n_O}{2}$ & \textbf{Ratio $C/H$} \\
+\midrule
+Metanol ($CH_4O$) & $32.04\text{ g/mol}$ & 1 & 4 & 1 & $1 + 1 - 0.5 = \mathbf{1.5}$ & $0.25$ \\
+Acetona ($C_3H_6O$) & $58.08\text{ g/mol}$ & 3 & 6 & 1 & $3 + 1.5 - 0.5 = \mathbf{4.0}$ & $0.50$ \\
+Ácido Acético ($C_2H_4O_2$) & $60.05\text{ g/mol}$ & 2 & 4 & 2 & $2 + 1 - 1.0 = \mathbf{2.0}$ & $0.50$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textit{Interpretación:} Observa cómo la acetona requiere más oxígeno ($\nu_{O_2} = 4.0$) que el ácido acético ($\nu_{O_2} = 2.0$), a pesar de tener una masa molar casi idéntica. Como consecuencia, la entalpía de combustión de la acetona ($\approx -1790\text{ kJ/mol}$) es más del doble de exotérmica que la del ácido acético ($\approx -874\text{ kJ/mol}$). ¡La variable $\nu_{O_2}$ contiene enorme poder predictivo!
+\end{exercisebox}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% CAPÍTULO 6: ANÁLISIS DEL TRABAJO PÚBLICO DEL DR. ARZOLA FLORES
+% ------------------------------------------------------------------------------
+\chapter{Análisis Especializado del Trabajo Público del Dr. Arzola Flores}
+
+Karol Paola, en este capítulo dedicamos una sección específica y detallada a analizar con rigor científico la investigación pública desarrollada por el Dr. Jesús Andrés Arzola Flores y su grupo de colaboradores en la BUAP sobre la predicción de entalpías de combustión. Nuestro único y exclusivo objetivo pedagógico es aprender de su arquitectura y resultados para diseñar nuestro propio modelo predictivo limpio, transparente y autónomo.
+
+\section{Ficha del Trabajo Público de Referencia}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Cita Científica Formal:} Saviñón-Flores, M. F., Arzola-Flores, J. A., García-Castro, M. A., Díaz-Sánchez, F., Vidal-Robles, E., \& Maruri-Valderrabano, F. A. (2025). \textit{Prediction of Standard Combustion Enthalpy of Organic Compounds Combining Machine Learning and Chemical Graph Theory: A Strategy}. \textbf{ACS Omega}, 10(36), 41828--41848.
+    \item \textbf{Identificador DOI Oficial:} \url{https://doi.org/10.1021/acsomega.5c05927}
+\end{itemize}
+
+\section{¿Cuál fue el Problema Científico que Abordaron?}
+El objetivo del grupo consistió en predecir de manera generalizada y precisa la entalpía estándar de combustión ($\Delta H_c^\circ$) de una gran biblioteca de moléculas orgánicas con alta diversidad estructural (hidrocarburos lineales, ramificados, ciclos alifáticos, aromáticos, heterociclos oxigenados y nitrogenados). Buscaban una alternativa cuantitativa a la experimentación destructiva en calorímetros de bomba, útil para evaluar rápidamente el potencial energético de nuevos compuestos y biocombustibles.
+
+\section{El Dataset Utilizado y su Curaduría}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Tamaño Muestral:} \textbf{3,477 compuestos orgánicos curados}.
+    \item \textbf{Fuentes de Datos:} Bases de datos termodinámicas de referencia internacional (NIST Chemistry WebBook, compilaciones termoquímicas calorimétricas históricas y reportes certificados).
+    \item \textbf{Variable Objetivo ($y$):} Entalpía estándar de combustión a $298.15\text{ K}$ en $\text{kJ/mol}$ (con valores que abarcan desde moléculas pequeñas como el metano hasta hidrocarburos complejos de más de 30 carbonos, con entalpías entre $-800$ y $-16,000\text{ kJ/mol}$).
+\end{itemize}
+
+\section{¿Qué Crearon y Cómo lo Hicieron?}
+El pipeline desarrollado por el grupo de investigación constó de las siguientes etapas secuenciales:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Normalización de Identificadores:} Extracción y estandarización de cadenas SMILES canónicas para evitar representaciones redundantes de la misma estructura química.
+    \item \textbf{Generación de la Matriz de Diseño ($\mathbf{X}$):} Extracción computacional de variables numéricas para cada una de las 3,477 moléculas.
+    \item \textbf{Partición de Datos:} División del conjunto total en un 80\% de datos para entrenamiento (\textit{Training Set}) y un 20\% reservado estrictamente para prueba (\textit{Test Set}), asegurando reproducibilidad mediante semillas fijas.
+    \item \textbf{Selección y Entrenamiento del Algoritmo Ganador:} Tras evaluar diversos estimadores (regresiones lineales y algoritmos de ensamble), el modelo que obtuvo el rendimiento más consistente y robusto fue un ensamble de árboles de decisión: \textbf{Random Forest Regressor}.
+    \item \textbf{Afinamiento de Hiperparámetros:} Control riguroso del número de árboles (\texttt{n\_estimators}) y de la profundidad máxima (\texttt{max\_depth}) para mitigar el riesgo de sobreajuste (\textit{overfitting}).
+\end{enumerate}
+
+\section{Resultados Cuantitativos Alcanzados en su Publicación}
+En el conjunto de prueba independiente (\textit{Test Set}), el modelo del Dr. Arzola Flores y colaboradores reportó los siguientes valores de referencia:
+\begin{tcolorbox}[colback=boxbg,colframe=buapblue,title=Métricas Oficiales Reportadas en ACS Omega 2025]
+\begin{align*}
+    R^2 &\approx \mathbf{0.9810} \quad (\text{Coeficiente de determinación}) \\
+    \text{MAE} &\approx \mathbf{287.5988\text{ kJ/mol}} \quad (\text{Error Absoluto Medio})
+\end{align*}
+\end{tcolorbox}
+
+\section{Lecciones Didácticas para Nuestro Propio Modelo}
+Analizar este trabajo nos deja lecciones invaluables para nuestro proyecto:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Random Forest es el Estimador Ideal para este Target:} La relación entre la estructura molecular y la entalpía de combustión presenta no-linealidades inherentes (tensión de anillo en ciclos pequeños, efectos de resonancia aromática, interacciones estéricas). Los ensambles de árboles capturan estas particiones no lineales sin sufrir por problemas de escala.
+    \item \textbf{La Métrica de Éxito es el MAE, no solo el $R^2$:} Como la base de datos cubre un rango numérico gigantesco (de $-890$ a $-16000\text{ kJ/mol}$), la varianza total es inmensa. Un $R^2 = 0.98$ puede sonar casi perfecto, pero un MAE de $287\text{ kJ/mol}$ representa el margen real de incertidumbre media del modelo.
+    \item \textbf{Nuestro Camino Autónomo:} En lugar de complicarnos en esta etapa inicial con índices de grafos topológicos que aún no dominas, utilizaremos descriptores constitutivos, estequiométricos y fisicoquímicos directos (masa molar, balance de oxígeno, conteo de heteroátomos y enlaces). Diseñaremos nuestro propio pipeline claro, modular y 100\% comprensible para ti.
+\end{enumerate}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% CAPÍTULO 7: MACHINE LEARNING TEÓRICO Y MODELOS DE REGRESIÓN
+% ------------------------------------------------------------------------------
+\chapter{Machine Learning Fundamental: Algoritmos de Regresión Explicados}
+
+Karol Paola, en este capítulo aprenderás qué hace internamente cada algoritmo de regresión, deduciendo sus ecuaciones y entendiendo por qué los árboles y ensambles son tan efectivos.
+
+\section{¿Qué es un Problema de Regresión Supervisada?}
+Disponemos de un conjunto de entrenamiento de $n$ moléculas:
+\begin{equation}
+    \mathcal{D} = \{(\mathbf{x}_1, y_1), (\mathbf{x}_2, y_2), \dots, (\mathbf{x}_n, y_n)\}
+\end{equation}
+donde $\mathbf{x}_i \in \mathbb{R}^p$ es el vector de variables moleculares y $y_i \in \mathbb{R}$ es la entalpía de combustión medida experimentalmente. Nuestro objetivo es aprender una función hipótesis $\hat{y} = f(\mathbf{x})$ tal que el error entre las predicciones $\hat{y}$ y los valores reales $y$ sea mínimo en moléculas nuevas que el modelo jamás haya visto.
+
+\section{Regresión Lineal por Mínimos Cuadrados Ordinarios (OLS)}
+
+\subsection{Ecuación del Modelo y Función de Costo (Loss)}
+El modelo lineal asume que la entalpía predicha es una combinación lineal de las variables:
+\begin{equation}
+    \hat{y}_i = w_0 + w_1 x_{i1} + w_2 x_{i2} + \dots + w_p x_{ip} = \mathbf{w}^T \mathbf{x}_i + b
+\end{equation}
+Para encontrar los pesos óptimos $\mathbf{w}$, definimos la función de pérdida del \textbf{Error Cuadrático Medio (MSE)}:
+\begin{equation}
+    L(\mathbf{w}, b) = \frac{1}{n} \sum_{i=1}^n \left( y_i - (\mathbf{w}^T \mathbf{x}_i + b) \right)^2
+\end{equation}
+
+\subsection{Solución Analítica Matricial}
+Expresando el sistema en notación matricial (añadiendo una columna de unos para el sesgo $b$ en la matriz $\mathbf{X} \in \mathbb{R}^{n \times (p+1)}$):
+\begin{equation}
+    L(\mathbf{w}) = \frac{1}{n} \|\mathbf{y} - \mathbf{X}\mathbf{w}\|^2 = \frac{1}{n} (\mathbf{y} - \mathbf{X}\mathbf{w})^T (\mathbf{y} - \mathbf{X}\mathbf{w})
+\end{equation}
+Derivando con respecto al vector de pesos $\mathbf{w}$ e igualando a cero:
+\begin{equation}
+    \nabla_{\mathbf{w}} L = -\frac{2}{n} \mathbf{X}^T (\mathbf{y} - \mathbf{X}\mathbf{w}) = \mathbf{0} \quad \Longrightarrow \quad \mathbf{X}^T \mathbf{X} \mathbf{w} = \mathbf{X}^T \mathbf{y}
+\end{equation}
+Si la matriz $\mathbf{X}^T \mathbf{X}$ es invertible, la solución analítica exacta es:
+\begin{equation}
+    \mathbf{w}^* = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}
+\end{equation}
+
+\section{Regularización: Evitando el Sobreajuste con Ridge y Lasso}
+
+\subsection{El Dilema Sesgo-Varianza (\textit{Bias-Variance Tradeoff})}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Subajuste (\textit{Underfitting} / Alto Sesgo):} El modelo es demasiado simple (ej. asumir una línea recta cuando la relación es curva). Comete grandes errores tanto en entrenamiento como en prueba.
+    \item \textbf{Sobreajuste (\textit{Overfitting} / Alta Varianza):} El modelo memoriza el ruido del entrenamiento. Tiene un error casi nulo en Train, pero falla estrepitosamente en Test.
+\end{itemize}
+
+\subsection{Regresión Ridge (Penalización $L_2$)}
+Ridge añade a la función de pérdida una penalización cuadrática proporcional a la magnitud de los pesos:
+\begin{equation}
+    L_{\text{Ridge}}(\mathbf{w}) = \frac{1}{n} \sum_{i=1}^n (y_i - \mathbf{w}^T \mathbf{x}_i)^2 + \alpha \sum_{j=1}^p w_j^2 = \text{MSE} + \alpha \|\mathbf{w}\|_2^2
+\end{equation}
+donde $\alpha > 0$ es el hiperparámetro de regularización.  
+\textbf{Efecto pedagógico:} Impide que ningún peso se vuelva astronómicamente grande, encogiendo los coeficientes hacia cero y aumentando la estabilidad del modelo.
+
+\subsection{Regresión Lasso (Penalización $L_1$)}
+Lasso penaliza el valor absoluto de los pesos:
+\begin{equation}
+    L_{\text{Lasso}}(\mathbf{w}) = \frac{1}{n} \sum_{i=1}^n (y_i - \mathbf{w}^T \mathbf{x}_i)^2 + \alpha \sum_{j=1}^p |w_j| = \text{MSE} + \alpha \|\mathbf{w}\|_1
+\end{equation}
+\textbf{Efecto pedagógico:} Debido a la geometría de las esquinas de la norma $L_1$, Lasso anula por completo los pesos de variables irrelevantes ($w_j = 0$), actuando como un seleccionador automático de variables químicas.
+
+\section{Árboles de Decisión y Random Forest Regressor}
+
+\subsection{¿Cómo Funciona un Árbol de Regresión Individual?}
+Un árbol de decisión particiona el espacio de descriptores en regiones rectangulares hiperdimensionales $R_1, R_2, \dots, R_M$. Para cualquier molécula que caiga en la región $R_m$, la predicción es simplemente el promedio de las entalpías de las moléculas de entrenamiento de esa región:
+\begin{equation}
+    \hat{y}_{R_m} = \frac{1}{N_m} \sum_{i \in R_m} y_i
+\end{equation}
+En cada nodo, el algoritmo elige la variable $j$ y el punto de corte $s$ que maximizan la reducción de varianza (disminución del MSE).
+
+\subsection{Random Forest: El Poder del Ensamble}
+Un solo árbol de decisión profundo tiende a sobreajustar con facilidad. \textbf{Random Forest} resuelve esto promediando las predicciones de $B$ árboles descorrelacionados (típicamente $B = 100$ a $300$):
+\begin{equation}
+    \hat{y}_{\text{RF}}(\mathbf{x}) = \frac{1}{B} \sum_{b=1}^B T_b(\mathbf{x})
+\end{equation}
+Para asegurar que los árboles sean distintos entre sí, utiliza dos mecanismos aleatorios:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Bootstrap Aggregating (Bagging):} Cada árbol se entrena con una muestra aleatoria del mismo tamaño $n$, tomada con reemplazo del dataset original.
+    \item \textbf{Submuestreo de Características:} En cada división de cada nodo, el árbol solo puede elegir entre un subconjunto aleatorio de variables (típicamente $\sqrt{p}$ o $p/3$).
+\end{enumerate}
+\textit{Demostración estadística:} Si promediamos $B$ estimadores independientes, cada uno con varianza $\sigma^2$, la varianza del promedio es $\frac{\sigma^2}{B}$. ¡Random Forest reduce drásticamente la varianza del error sin aumentar el sesgo!
+
+\section{Pipeline Maestro de Scikit-Learn (Sin Data Leakage)}
+
+\begin{lstlisting}[language=Python]
+# ==============================================================================
+# PIPELINE MAESTRO DE MACHINE LEARNING EN INGENIERIA QUIMICA
+# ==============================================================================
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn.linear_model import LinearRegression, Ridge
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+# 1. Separacion de matriz de features (X) y vector objetivo (y)
+columnas_features = ['peso_mol', 'num_C', 'num_H', 'num_O', 'nu_O2', 'ratio_C_H']
+X = df_limpio[columnas_features]
+y = df_limpio['dH_combustion'] # Target en kJ/mol
+
+# 2. Particion Train/Test estratificada en reproducibilidad (80% Train, 20% Test)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.20, random_state=42
+)
+
+# 3. Configuracion de estimadores dentro de Pipelines para evitar fuga de datos
+modelos = {
+    "Regresion Lineal (OLS)": Pipeline([
+        ('escalador', StandardScaler()),
+        ('regresor', LinearRegression())
+    ]),
+    "Ridge (L2 regularizado)": Pipeline([
+        ('escalador', StandardScaler()),
+        ('regresor', Ridge(alpha=10.0))
+    ]),
+    "Random Forest (200 arboles)": RandomForestRegressor(
+        n_estimators=200, max_depth=14, random_state=42, n_jobs=-1
+    )
+}
+
+# 4. Entrenamiento y evaluacion comparativa
+resultados = []
+for nombre, modelo in modelos.items():
+    modelo.fit(X_train, y_train) # Ajustar EXCLUSIVAMENTE con datos de Train
+    
+    pred_train = modelo.predict(X_train)
+    pred_test = modelo.predict(X_test)
+    
+    resultados.append({
+        "Algoritmo": nombre,
+        "MAE Train (kJ/mol)": round(mean_absolute_error(y_train, pred_train), 2),
+        "MAE Test (kJ/mol)": round(mean_absolute_error(y_test, pred_test), 2),
+        "RMSE Test (kJ/mol)": round(np.sqrt(mean_squared_error(y_test, pred_test)), 2),
+        "R2 Test": round(r2_score(y_test, pred_test), 4)
+    })
+
+df_eval = pd.DataFrame(resultados)
+print(df_eval.to_string(index=False))
+\end{lstlisting}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% CAPÍTULO 8: VALIDACIÓN CIENTÍFICA Y DIAGNÓSTICO DE RESIDUALES
+% ------------------------------------------------------------------------------
+\chapter{Validación Científica, Métricas y Diagnóstico de Residuales}
+
+Karol Paola, en ciencia no basta con decir que un modelo es bueno; debemos demostrar rigurosamente su precisión, sus límites de validez y sus posibles sesgos.
+
+\section{Fórmulas Matemáticas de las Métricas de Error}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Error Absoluto Medio (MAE - La Métrica Reina):}
+    \begin{equation}
+        \text{MAE} = \frac{1}{n_{\text{test}}} \sum_{i=1}^{n_{\text{test}}} |y_i - \hat{y}_i|
+    \end{equation}
+    Mide el error promedio en las unidades físicas reales del fenómeno ($\text{kJ/mol}$). Un MAE de $280\text{ kJ/mol}$ indica que, en promedio, la predicción del modelo se desvía en $\pm 280\text{ kJ/mol}$ del valor calorimétrico experimental.
+    \item \textbf{Raíz del Error Cuadrático Medio (RMSE):}
+    \begin{equation}
+        \text{RMSE} = \sqrt{\frac{1}{n_{\text{test}}} \sum_{i=1}^{n_{\text{test}}} (y_i - \hat{y}_i)^2}
+    \end{equation}
+    Al elevar las diferencias al cuadrado antes de promediar, el RMSE penaliza severamente los errores grandes o atípicos (\textit{outliers}). Si el RMSE es significativamente mayor que el MAE, significa que el modelo comete fallos extremos en un subgrupo de moléculas.
+    \item \textbf{Coeficiente de Determinación ($R^2$):}
+    \begin{equation}
+        R^2 = 1 - \frac{\sum_{i=1}^{n_{\text{test}}} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n_{\text{test}}} (y_i - \bar{y})^2} = 1 - \frac{SS_{\text{res}}}{SS_{\text{tot}}}
+    \end{equation}
+    Representa la fracción de la varianza del target explicada por el modelo predictivo.
+\end{enumerate}
+
+\begin{warningbox}{¡Cuidado con el Espejismo del $R^2$ en Termoquímica!}
+Como la entalpía de combustión de compuestos orgánicos abarca un rango enorme (desde $-890\text{ kJ/mol}$ para el metano hasta más de $-15000\text{ kJ/mol}$ para alcanos pesados), el denominador de la varianza total ($SS_{\text{tot}}$) es colosal. Un modelo deficiente que se equivoque por $\pm 400\text{ kJ/mol}$ en cada predicción puede arrojar tranquilamente un $R^2 = 0.975$. \textbf{Tu criterio de calidad en laboratorio debe ser siempre el MAE}.
+\end{warningbox}
+
+\section{El Diagnóstico Gráfico de Residuales ($e_i = y_i - \hat{y}_i$)}
+Grafica siempre los residuales frente a las entalpías predichas:
+\begin{lstlisting}[language=Python]
+import matplotlib.pyplot as plt
+
+y_pred = modelos["Random Forest (200 arboles)"].predict(X_test)
+residuales = y_test - y_pred
+
+plt.figure(figsize=(7.5, 4.8))
+plt.scatter(y_pred, residuales, alpha=0.5, color='navy', edgecolors='k', s=35)
+plt.axhline(0, color='red', linestyle='--', linewidth=1.5)
+plt.title('Diagnostico de Residuales: Random Forest Regressor', fontsize=12)
+plt.xlabel('$\Delta H_c^\circ$ Predicho (kJ/mol)')
+plt.ylabel('Residual ($y_{\mathrm{exp}} - y_{\mathrm{pred}}$) [kJ/mol]')
+plt.grid(True, linestyle=':', alpha=0.6)
+plt.tight_layout()
+plt.show()
+\end{lstlisting}
+
+\noindent\textbf{Cómo interpretar la gráfica de residuales como una profesional:}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Banda aleatoria horizontal (Homocedasticidad):} La nube de puntos se distribuye simétricamente alrededor de la línea cero sin ensancharse. \textit{El modelo es robusto e insesgado.}
+    \item \textbf{Forma de embudo (\textit{Funnel shape} / Heterocedasticidad):} La nube es estrecha a entalpías pequeñas y se ensancha a entalpías muy negativas. \textit{Indica que la incertidumbre crece en moléculas grandes.}
+    \item \textbf{Puntos solitarios muy alejados ($|e_i| > 1500\text{ kJ/mol}$):} Son anomalías que requieren inspección química (¿SMILES mal escrito?, ¿error tipográfico en el CSV original?).
+\end{itemize}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% CAPÍTULO 9: METAS DEL VIERNES Y HOJA DE RUTA HASTA DICIEMBRE 2026
+% ------------------------------------------------------------------------------
+\chapter{Plan de Trabajo: Metas del Viernes y Hoja de Ruta a Diciembre}
+
+Karol Paola, este capítulo define con exactitud qué debes alcanzar al concluir tu primera semana de trabajo y cómo se estructura el camino cronológico hasta el hito del 10 de diciembre de 2026.
+
+\section{Checklist Obligatoria para este Primer Viernes}
+Antes de cerrar tu sesión de trabajo de este viernes, debes verificar el cumplimiento estricto de cada uno de los siguientes puntos:
+
+\begin{protocolbox}{Checklist Operativa del Primer Viernes}
+\begin{itemize}[leftmargin=*]
+    \item[$\square$] \textbf{Entorno PyCharm Funcional:} El entorno virtual \texttt{.venv} está configurado y el intérprete ejecuta Python 3.10+ sin errores de importación.
+    \item[$\square$] \textbf{Estructura Limpia de Carpetas:} El archivo \texttt{base\_entalpias.csv} está colocado en \texttt{data/raw/} y no disperso en el escritorio o en carpetas temporales.
+    \item[$\square$] \textbf{Cuaderno Inicial Creado:} El archivo interactivo \texttt{notebooks/01\_exploracion\_inicial.ipynb} está conectado al kernel de \texttt{.venv} y carga la base de datos con rutas relativas (\texttt{os.path.join}).
+    \item[$\square$] \textbf{Auditoría de Datos Realizada:} Se han ejecutado \texttt{df.info()} y \texttt{df.describe()}, identificando el número total de filas, la columna target (\texttt{dH\_combustion}) y confirmando que las unidades son $\text{kJ/mol}$.
+    \item[$\square$] \textbf{Detección de Nulos y Duplicados:} Se han cuantificado los valores nulos con \texttt{df.isnull().sum()} y los duplicados con \texttt{df.duplicated(subset=['SMILES']).sum()}.
+    \item[$\square$] \textbf{ChemPy Operativo:} Se ha probado en un script el balanceo estequiométrico automático de la combustión del metano y etanol con \texttt{chempy.chemistry.balance\_stoichiometry}.
+    \item[$\square$] \textbf{Git y GitHub Sincronizados:} El archivo \texttt{.gitignore} excluye correctamente \texttt{.venv/}, se ha realizado el commit descriptivo de la semana y el comando \texttt{git push origin main} ejecutó limpiamente.
+\end{itemize}
+\end{protocolbox}
+
+\section{Hoja de Ruta Maestra por Fases (Septiembre a Diciembre 2026)}
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabularx}{\textwidth}{c p{3.2cm} p{4.2cm} X}
+\toprule
+\textbf{Fase} & \textbf{Periodo} & \textbf{Actividad Central} & \textbf{Entregable Oficial de Cierre} \\
+\midrule
+\rowcolor{codebg}
+\textbf{F0-ENV} & Sep 04 -- Sep 05 & Setup de entorno, ChemPy y Git. & \texttt{F0-ENV\_ACT01\_CFG\_entorno\_pycharm\_v1.0\_FINAL.txt} \newline \texttt{F0-ENV\_ACT02\_SCR\_funciones\_chempy\_v1.0\_FINAL.py} \\
+\addlinespace
+\textbf{F1-DAT} & Sep 05 -- Sep 12 & Curaduría de datos, unidades y nulos. & \texttt{F1-DAT\_ACT03\_DAT\_dataset\_curado\_v1.0\_FINAL.csv} \\
+\rowcolor{codebg}
+\textbf{F2-EDA} & Sep 12 -- Sep 26 & Detección de outliers (IQR) y cálculo de descriptores moleculares. & \texttt{F2-EDA\_ACT04\_NBK\_exploracion\_distribuciones\_v1.0\_FINAL.ipynb} \newline \texttt{F2-EDA\_ACT05\_SCR\_calculo\_descriptores\_moleculares\_v1.0\_FINAL.py} \\
+\addlinespace
+\textbf{F3-MLB} & Sep 26 -- Oct 10 & Modelos lineales (OLS, Ridge) y ajuste de Random Forest Regressor. & \texttt{F3-MLB\_ACT06\_NBK\_modelos\_lineales\_baseline\_v1.0\_FINAL.ipynb} \newline \texttt{F3-MLB\_ACT07\_SCR\_random\_forest\_regressor\_v1.0\_FINAL.py} \\
+\rowcolor{codebg}
+\textbf{F4-VAL} & Oct 10 -- Oct 17 & Validación cruzada 10-fold y análisis gráfico de residuales. & \texttt{F4-VAL\_ACT08\_NBK\_diagnostico\_residuales\_v1.0\_FINAL.ipynb} \\
+\addlinespace
+\textbf{F5-REP} & Oct 17 -- Oct 31 & Benchmarking y comparación de métricas contra literatura. & \texttt{F5-REP\_ACT09\_REP\_informe\_benchmarking\_literatura\_v1.0\_FINAL.pdf} \\
+\rowcolor{codebg}
+\textbf{F6-SIM} & Oct 31 -- Nov 14 & Simulación termodinámica de combustión en DWSIM. & \texttt{F6-SIM\_SIM01\_SIM\_reactor\_combustion\_dwsim\_v1.0\_FINAL.dwsim} \\
+\addlinespace
+\textbf{F7-EQK} & Nov 14 -- Dic 10 & Puente al equilibrio químico ($\Delta G^\circ, K_{eq}$) y entrega final. & \texttt{F7-EQK\_ACT10\_SCR\_calculador\_gibbs\_keq\_v1.0\_FINAL.py} \newline \texttt{F7-EQK\_DOC01\_REP\_manuscrito\_final\_propuesta\_v1.0\_FINAL.pdf} \\
+\bottomrule
+\end{tabularx}
+\caption{Cronograma integral del proyecto hacia el 10 de diciembre de 2026.}
+\end{table}
+
+\section{El Hito Decisivo del 10 de Diciembre de 2026}
+¿Por qué todo este esfuerzo de otoño tiene como horizonte el 10 de diciembre de 2026? Porque el modelado de \textbf{Equilibrio Químico} en sistemas complejos multicomponente (reacciones simultáneas, balance de energía libre de Gibbs, coeficientes de actividad no ideales y cálculo de constantes $K_{eq}$) requiere que domines con total naturalidad el manejo de datos moleculares, el cálculo estequiométrico automatizado y los pipelines de regresión. Las entalpías de combustión son tu plataforma de despegue; el equilibrio químico será tu consagración como investigadora autónoma.
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% CAPÍTULO 10: CATÁLOGO DE ERRORES FRECUENTES Y SOLUCIONES
+% ------------------------------------------------------------------------------
+\chapter{Catálogo de Errores Frecuentes y Cómo Resolverlos}
+
+Aprender a programar en ciencia de datos es, en gran medida, aprender a diagnosticar y corregir errores sin frustrarse. A continuación se presentan los problemas más comunes y su solución directa:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{\texttt{FileNotFoundError} al cargar el CSV:}  
+    \textit{Causa:} El script se ejecuta desde una carpeta distinta a la que esperabas o utilizaste una ruta absoluta.  
+    \textit{Solución:} Verifica tu directorio de trabajo actual con \texttt{os.getcwd()} y construye la ruta relativa con \texttt{os.path.join("..", "data", "raw", "base\_entalpias.csv")}.
+    
+    \item \textbf{\texttt{ModuleNotFoundError: No module named 'chempy'}:}  
+    \textit{Causa:} Instalaste la librería en el Python global del sistema y no en el entorno virtual \texttt{.venv} del proyecto.  
+    \textit{Solución:} Abre la terminal en PyCharm, verifica que comience con \texttt{(.venv)} y corre \texttt{pip install chempy}.
+    
+    \item \textbf{Fuga de Datos (\textit{Data Leakage}):}  
+    \textit{Causa:} Aplicar \texttt{StandardScaler().fit()} sobre todo el dataset antes de hacer \texttt{train\_test\_split}.  
+    \textit{Solución:} Emplea siempre un objeto \texttt{Pipeline([('scaler', StandardScaler()), ('model', Ridge())])}. El pipeline ajusta el escalador únicamente sobre el Train Set.
+    
+    \item \textbf{Inconsistencia de Unidades Termodinámicas:}  
+    \textit{Causa:} Combinar columnas reportadas en $\text{kcal/mol}$ con datos en $\text{kJ/mol}$.  
+    \textit{Solución:} Aplica el factor de conversión estricto ($1\text{ kcal} = 4.184\text{ kJ}$) al momento de cargar el dataset crudo.
+    
+    \item \textbf{Sobreajuste Severo en Random Forest (\textit{Overfitting}):}  
+    \textit{Causa:} Dejar \texttt{max\_depth=None}, permitiendo que cada árbol crezca hasta que cada hoja tenga una sola molécula (memorización pura).  
+    \textit{Solución:} Acota la profundidad fijando \texttt{max\_depth=12} o \texttt{max\_depth=14} y aumenta \texttt{min\_samples\_split=5}.
+    
+    \item \textbf{Subir el Entorno Virtual a GitHub:}  
+    \textit{Causa:} Olvidar agregar \texttt{.venv/} al archivo \texttt{.gitignore}.  
+    \textit{Solución:} Añade \texttt{.venv/} en una línea de \texttt{.gitignore} y ejecuta \texttt{git rm -r --cached .venv} para desrastrearlo sin borrarlo de tu disco.
+    
+    \item \textbf{Resultados no reproducibles entre corridas:}  
+    \textit{Causa:} No fijar la semilla aleatoria en los algoritmos estocásticos.  
+    \textit{Solución:} Especifica siempre \texttt{random\_state=42} tanto en \texttt{train\_test\_split} como en \texttt{RandomForestRegressor}.
+\end{enumerate}
+
+\vfill
+\begin{center}
+    \rule{0.6\textwidth}{0.6pt}\\[0.2cm]
+    {\small \textbf{Manual Didáctico de Formación Progresiva en Termoquímica y Machine Learning}}\\[0.1cm]
+    {\footnotesize Benemérita Universidad Autónoma de Puebla $\cdot$ Facultad de Ingeniería Química}
+\end{center}
+
+\end{document}
