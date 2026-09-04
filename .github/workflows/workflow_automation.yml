@@ -1,0 +1,32 @@
+name: Workflow Manager & Kanban Sync
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-and-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del Repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Ejecutar Escaneo de Cierre y Sincronización de Tableros
+        run: |
+          python src/workflow_manager.py --scan
+          python src/workflow_manager.py --status
+
+      - name: Auto-commit y Push de Tableros Actualizados (si hubo cambios)
+        if: github.event_name == 'push'
+        run: |
+          git config --global user.name "Workflow Bot"
+          git config --global user.email "bot@antigravity.internal"
+          git add KANBAN.md ROADMAP.md dashboard.html config/matriz_actividades.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(automation): sincronizacion automatica de KANBAN y ROADMAP" && git push)

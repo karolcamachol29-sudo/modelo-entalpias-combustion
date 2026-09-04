@@ -1,0 +1,16 @@
+ENTORNO DIGITAL VERIFICADO
+Proyecto: Predicción de Entalpías de Combustión
+Responsable: Karol Paola Camacho López (FIQ — BUAP)
+Fecha: 2026-09-04
+
+1. Intérprete Python configurado en .venv (Python 3.10+)
+2. Paquetes instalados y probados:
+   - numpy (Álgebra y computación vectorizada)
+   - pandas (Manipulación de DataFrames y lectura de CSV)
+   - chempy (Estequiometría y termoquímica molecular)
+   - scikit-learn (Pipelines de Machine Learning y regresión)
+   - matplotlib / seaborn (Visualización de datos)
+   - jupyter / ipykernel (Soporte de notebooks en PyCharm)
+3. Cuaderno 01_exploracion_inicial.ipynb inicializado.
+4. Repositorio local preparado con .gitignore estricto.
+ESTADO: APROBADO Y CERRADO

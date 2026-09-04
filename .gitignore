@@ -1,0 +1,56 @@
+# Entornos virtuales de Python
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Archivos compilados y bytecode de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribuciones e instalaciones de paquetes
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# Configuraciones de Entornos de Desarrollo (IDEs)
+# PyCharm
+.idea/
+*.iws
+*.iml
+
+# VS Code
+.vscode/
+
+# Archivos temporales y del sistema operativo
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+*.bak
+
+# Datos crudos muy pesados o temporales (descomentar si el dataset supera 100 MB)
+# data/raw/*.zip
+# data/raw/*.tar.gz
