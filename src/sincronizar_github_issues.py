@@ -26,7 +26,7 @@ def main():
         ("fase:F2-EDA", "ff7f0e", "Fase 2: Análisis Exploratorio y Descriptores"),
         ("fase:F3-MLB", "2ca02c", "Fase 3: Machine Learning Base"),
         ("fase:F4-VAL", "d62728", "Fase 4: Validación y Residuales"),
-        ("fase:F5-REP", "9467bd", "Fase 5: Reproducción Modelo Rector"),
+        ("fase:F5-REP", "9467bd", "Fase 5: Benchmarking y Comparación"),
         ("fase:F6-SIM", "8c564b", "Fase 6: Simulación en DWSIM"),
         ("fase:F7-EQK", "e377c2", "Fase 7: Transición al Equilibrio"),
         ("format:py", "79c0ff", "Código Python"),
@@ -58,7 +58,7 @@ def main():
         ("Hito F0: Setup y Fundamentos Termoquímicos", "2026-09-05T23:59:59Z", "Configuración del entorno digital, Git, ChemPy y checklist del viernes"),
         ("Hito F1-F2: Curaduría de Datos y Descriptores Moleculares", "2026-09-26T23:59:59Z", "Depuración de base de datos, outliers y descriptores moleculares"),
         ("Hito F3-F4: Modelado Machine Learning y Validación", "2026-10-17T23:59:59Z", "Modelos lineales OLS/Ridge, Random Forest y análisis de residuales"),
-        ("Hito F5-F6: Reproducción Modelo Rector y DWSIM", "2026-11-14T23:59:59Z", "Replicación de ACS Omega 2025 y simulación de combustión en DWSIM"),
+        ("Hito F5-F6: Benchmarking de Modelos y Simulación DWSIM", "2026-11-14T23:59:59Z", "Comparación con literatura especializada y simulación de combustión en DWSIM"),
         ("Hito F7: Transición al Proyecto de Equilibrio Químico", "2026-12-10T23:59:59Z", "Cálculo de Gibbs, Keq y manuscrito para el 10 de diciembre de 2026")
     ]
 
@@ -85,7 +85,7 @@ def main():
         elif fase in ["F3-MLB", "F4-VAL"]:
             return "Hito F3-F4: Modelado Machine Learning y Validación"
         elif fase in ["F5-REP", "F6-SIM"]:
-            return "Hito F5-F6: Reproducción Modelo Rector y DWSIM"
+            return "Hito F5-F6: Benchmarking de Modelos y Simulación DWSIM"
         else:
             return "Hito F7: Transición al Proyecto de Equilibrio Químico"
 

@@ -32,7 +32,7 @@ gantt
     Validación Cruzada k-Fold y Análisis Gráfico de Residuales (ACT08) :ACT08, 2026-10-10, 2026-10-17
 
     section F5-REP
-    Auditoría y Reproducción Exacta del Modelo Rector del Profesor (ACT09) :ACT09, 2026-10-17, 2026-10-31
+    Evaluación y Benchmarking Comparativo con la Literatura (ACT09) :ACT09, 2026-10-17, 2026-10-31
 
     section F6-SIM
     Simulación Termodinámica de Combustión en DWSIM (SIM01) :SIM01, 2026-10-31, 2026-11-14
@@ -56,7 +56,7 @@ gantt
 | `F3-MLB` | **ACT06** | Entrenamiento de Modelos Base (OLS, Ridge y Lasso) | `2026-10-03` | ⛔ Bloqueado | `F3-MLB_ACT06_NBK_modelos_lineales_baseline_v1.0_FINAL.ipynb` |
 | `F3-MLB` | **ACT07** | Implementación y Ajuste de Random Forest Regressor | `2026-10-10` | ⛔ Bloqueado | `F3-MLB_ACT07_SCR_random_forest_regressor_v1.0_FINAL.py` |
 | `F4-VAL` | **ACT08** | Validación Cruzada k-Fold y Análisis Gráfico de Residuales | `2026-10-17` | ⛔ Bloqueado | `F4-VAL_ACT08_NBK_diagnostico_residuales_v1.0_FINAL.ipynb` |
-| `F5-REP` | **ACT09** | Auditoría y Reproducción Exacta del Modelo Rector del Profesor | `2026-10-31` | ⛔ Bloqueado | `F5-REP_ACT09_REP_informe_reproduccion_modelo_v1.0_FINAL.pdf` |
+| `F5-REP` | **ACT09** | Evaluación y Benchmarking Comparativo con la Literatura | `2026-10-31` | ⛔ Bloqueado | `F5-REP_ACT09_REP_informe_benchmarking_literatura_v1.0_FINAL.pdf` |
 | `F6-SIM` | **SIM01** | Simulación Termodinámica de Combustión en DWSIM | `2026-11-14` | ⛔ Bloqueado | `F6-SIM_SIM01_SIM_reactor_combustion_dwsim_v1.0_FINAL.dwsim` |
 | `F7-EQK` | **ACT10** | Puente Termodinámico al Equilibrio: Modelado de Gibbs y Keq | `2026-11-28` | ⛔ Bloqueado | `F7-EQK_ACT10_SCR_calculador_gibbs_keq_v1.0_FINAL.py` |
 | `F7-EQK` | **DOC01** | Entrega de Manuscrito Técnico y Propuesta para el Proyecto de Equilibrio | `2026-12-10` | ⛔ Bloqueado | `F7-EQK_DOC01_REP_manuscrito_final_propuesta_v1.0_FINAL.pdf` |

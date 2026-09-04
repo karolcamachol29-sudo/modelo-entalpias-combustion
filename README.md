@@ -19,7 +19,7 @@ El proyecto forma parte de la formación práctica y científica de **Karol Paol
 
 1. **Comprensión Físico-Química:** Relacionar el origen experimental calorimétrico de la entalpía (bomba de Mahler a volumen constante, $Q_v = \Delta U_c$, correcciones de Washburn y conversión a $\Delta H_c^\circ$) con la representación computacional de las moléculas.
 2. **Representación Molecular:** Mapear cadenas de texto **SMILES** y fórmulas químicas a descriptores moleculares y propiedades fisicoquímicas cuantitativas (masa molar, conteos de heteroátomos, enlaces y balance estequiométrico).
-3. **Reproducción de Modelos:** Replicar con rigor y reproducibilidad el modelo ganador reportado en la literatura del grupo de investigación (Random Forest Regressor, $R^2 \approx 0.981$, $\text{MAE} \approx 287.6\text{ kJ/mol}$).
+3. **Optimización de Modelos Predictivos:** Entrenar y evaluar modelos de regresión supervisada (Random Forest Regressor, Gradient Boosting y modelos lineales regularizados) para optimizar la precisión de estimación ($\text{MAE}$, $\text{RMSE}$, $R^2$).
 4. **Validación Científica:** Evaluar el sesgo y la varianza mediante validación cruzada ($k$-fold) y análisis detallado de gráficos de residuales ($y_{\text{exp}} - y_{\text{pred}}$) en lugar de depender únicamente de la métrica $R^2$.
 
 ---
@@ -89,14 +89,12 @@ $$\text{Molécula (SMILES / Fórmula)} \longrightarrow \text{Vector de Descripto
 
 ---
 
-## 📚 Referencias Científicas de Respaldo
-
-Este desarrollo está fundamentado en las investigaciones del Dr. Jesús Andrés Arzola Flores y colaboradores:
-
-1. **ACS Omega (2025):** *Prediction of Standard Combustion Enthalpy of Organic Compounds Combining Machine Learning and Chemical Graph Theory: A Strategy*. DOI: [10.1021/acsomega.5c05927](https://doi.org/10.1021/acsomega.5c05927).
-2. **The Journal of Physical Chemistry A (2024):** *Experimental Determination of the Standard Enthalpy of Formation of Trimellitic Acid and Its Prediction by Supervised Learning*. DOI: [10.1021/acs.jpca.3c05235](https://doi.org/10.1021/acs.jpca.3c05235).
-3. **Thermochimica Acta (2025):** *Tailored group contribution methods designed using machine learning to predict enthalpies in carboxylic acids and anhydrides*. DOI: [10.1016/j.tca.2024.179923](https://doi.org/10.1016/j.tca.2024.179923).
-4. **ACS Omega (2023):** *7-Methoxy-4-methylcoumarin: Standard Molar Enthalpy of Formation Prediction in the Gas Phase Using Machine Learning and Its Comparison to the Experimental Data*. DOI: [10.1021/acsomega.3c06637](https://doi.org/10.1021/acsomega.3c06637).
+## 📚 Referencias y Fuentes Termodinámicas
+ 
+1. **NIST Chemistry WebBook:** SRD 69, National Institute of Standards and Technology (NIST), Gaithersburg MD.
+2. **CRC Handbook of Chemistry and Physics:** Standard Thermodynamic Properties of Chemical Substances, CRC Press / Taylor & Francis.
+3. **Smith, J. M., Van Ness, H. C., Abbott, M. M., & Swihart, M. T.:** *Introduction to Chemical Engineering Thermodynamics*, 9th Edition, McGraw-Hill.
+4. **Pedregosa, F. et al. (2011):** *Scikit-learn: Machine Learning in Python*, Journal of Machine Learning Research, 12, pp. 2825–2830.
 
 ---
 

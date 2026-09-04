@@ -1,7 +1,7 @@
 # 📌 TABLERO KANBAN AUTOMATIZADO
 **Proyecto:** Predicción de Entalpías de Combustión Mediante Machine Learning  
 **Responsable:** Karol Paola Camacho López (Facultad de Ingeniería Química — BUAP)  
-**Última Sincronización:** 2026-09-04 07:45:42  
+**Última Sincronización:** 2026-09-04 01:48:45  
 **Progreso General:** 16.7% (2/12 entregables cerrados)
 
 ---
@@ -48,11 +48,11 @@
 - **Etiquetas:** `#ipynb` `[Backlog]` `@machine-learning`
 
 ---
-### [ACT09] Auditoría y Reproducción Exacta del Modelo Rector del Profesor
+### [ACT09] Evaluación y Benchmarking Comparativo con la Literatura
 - **Fase:** `F5-REP` | **Progreso:** `0%`
-- **Descripción:** Ejecución del protocolo de 10 pasos de ingeniería inversa para replicar el modelo de 3,477 compuestos reportado en ACS Omega 2025 (Dr. Jesús Andrés Arzola Flores).
+- **Descripción:** Análisis comparativo del rendimiento del modelo predictivo frente a los valores de referencia y benchmarks reportados en la literatura para el conjunto de datos de compuestos orgánicos.
 - **Plazo:** `2026-10-17` al `2026-10-31`<br>**Depende de:** ACT08
-- **Archivo de Cierre Requerido:** `F5-REP_ACT09_REP_informe_reproduccion_modelo_v1.0_FINAL.pdf`
+- **Archivo de Cierre Requerido:** `F5-REP_ACT09_REP_informe_benchmarking_literatura_v1.0_FINAL.pdf`
 - **Etiquetas:** `#pdf` `#tex` `[Backlog]` `@documentacion`
 
 ---
