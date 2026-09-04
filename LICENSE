@@ -1,21 +1,46 @@
-MIT License
+LICENCIA DE USO EXCLUSIVO ACADÉMICO Y DE INVESTIGACIÓN
+(NON-COMMERCIAL ACADEMIC LICENSE — ALL RIGHTS RESERVED)
 
 Copyright (c) 2026 Karol Paola Camacho López
+Facultad de Ingeniería Química — Benemérita Universidad Autónoma de Puebla (BUAP)
+Todos los derechos reservados. / All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+================================================================================
+TÉRMINOS Y CONDICIONES DE USO / TERMS AND CONDITIONS
+================================================================================
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. NATURALEZA PÚBLICA DE SOLO LECTURA (PUBLIC VIEW-ONLY):
+   El contenido de este repositorio (código fuente, modelos, algoritmos, datos,
+   memorias de cálculo y documentación técnica) es de acceso público ÚNICAMENTE
+   con fines de transparencia académica, revisión científica por pares y consulta
+   educativa. La disponibilidad pública del repositorio NO constituye una licencia
+   de software libre ni de código abierto bajo definiciones OSI (Open Source Initiative).
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. USO EXCLUSIVO ACADÉMICO (EXCLUSIVE ACADEMIC USE):
+   Se autoriza únicamente a estudiantes, docentes e investigadores individuales
+   a clonar, consultar y estudiar este material de manera privada y sin fines
+   de lucro, con el único propósito de formación académica y reproducción científica.
+
+3. PROHIBICIONES ESTRICTAS (RESTRICTIONS):
+   Queda terminantemente prohibido, sin la autorización previa, expresa y por
+   escrito de la autora (Karol Paola Camacho López):
+   a) Cualquier uso, explotación o integración con fines comerciales, industriales,
+      corporativos o lucrativos.
+   b) La redistribución, republicación, sublicenciamiento, copia pública o alojamiento
+      en otros repositorios o plataformas de distribución.
+   c) La modificación, ingeniería inversa no académica, o creación de obras
+      derivadas destinadas a su distribución pública o comercialización.
+   d) La venta o inclusión en paquetes de software propietarios o de pago.
+
+4. ATRIBUCIÓN Y CITACIÓN OBLIGATORIA (CITATION):
+   Cualquier mención, discusión o referencia a la metodología, modelos o resultados
+   aquí presentados en artículos científicos, tesis o reportes académicos debe citar
+   formalmente a la autora y al grupo de investigación de referencia:
+   - Autora: Karol Paola Camacho López (FIQ — BUAP)
+   - Grupo / Cátedra: Dr. Jesús Andrés Arzola Flores (BUAP)
+   - Repositorio: https://github.com/karolcamachol29-sudo/modelo-entalpias-combustion
+
+5. EXENCIÓN DE RESPONSABILIDAD (DISCLAIMER):
+   ESTE SOFTWARE Y MATERIAL SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO,
+   EXPRESA O IMPLÍCITA. EN NINGÚN CASO LA AUTORA O LA INSTITUCIÓN SERÁN RESPONSABLES
+   DE NINGÚN RECLAMO, DAÑO U OTRA RESPONSABILIDAD DERIVADA DE SU USO.

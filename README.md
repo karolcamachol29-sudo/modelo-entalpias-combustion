@@ -1,7 +1,7 @@
 # Predicción de Entalpías de Combustión Mediante Machine Learning
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License](https://img.shields.io/badge/Licencia-Uso%20Exclusivo%20Acad%C3%A9mico-red.svg)](LICENSE)
 [![Framework](https://img.shields.io/badge/Framework-Scikit--Learn%20%7C%20ChemPy-orange.svg)](https://scikit-learn.org/)
 [![Institution](https://img.shields.io/badge/BUAP-Facultad%20de%20Ingenier%C3%ADa%20Qu%C3%ADmica-navy.svg)](https://www.buap.mx/)
 
@@ -108,3 +108,15 @@ Este desarrollo está fundamentado en las investigaciones del Dr. Jesús Andrés
   Estudiante de Ingeniería Química  
   *Facultad de Ingeniería Química — Benemérita Universidad Autónoma de Puebla (BUAP)*  
   Heroica Puebla de Zaragoza, México.
+
+---
+
+## ⚖️ Licencia y Términos de Uso
+
+**Copyright © 2026 Karol Paola Camacho López. Todos los derechos reservados.**
+
+Este repositorio es de **acceso público únicamente para fines de visualización académica, revisión por pares y verificación científica**. 
+
+> **AVISO DE RESTRICCIÓN DE USO:**  
+> La disponibilidad pública de este repositorio **NO otorga una licencia de software libre ni permiso de libre uso, modificación o explotación**. Queda estrictamente prohibido el uso comercial, industrial o lucrativo, así como la redistribución, republicación o creación de obras derivadas sin la autorización expresa, previa y por escrito de la autora. Para consultas o colaboraciones académicas, contactar directamente a través de los canales institucionales de la BUAP. Consulta los términos completos en el archivo [LICENSE](LICENSE).
+
