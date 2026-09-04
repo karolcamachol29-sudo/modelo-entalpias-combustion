@@ -6,12 +6,19 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: write
+
 jobs:
   validate-and-sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout del Repositorio
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Configurar Python
         uses: actions/setup-python@v5
@@ -26,7 +33,7 @@ jobs:
       - name: Auto-commit y Push de Tableros Actualizados (si hubo cambios)
         if: github.event_name == 'push'
         run: |
-          git config --global user.name "Workflow Bot"
-          git config --global user.email "bot@antigravity.internal"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add KANBAN.md ROADMAP.md dashboard.html config/matriz_actividades.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(automation): sincronizacion automatica de KANBAN y ROADMAP" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(automation): sincronizacion automatica de KANBAN y ROADMAP [skip ci]" && git push)
