@@ -53,7 +53,7 @@ El proyecto sigue una arquitectura estandarizada para ciencia de datos reproduci
 
 ### 1. Clonar el Repositorio
 ```bash
-git clone https://github.com/tu-usuario/modelo-entalpias-combustion.git
+git clone https://github.com/karolcamachol29-sudo/modelo-entalpias-combustion.git
 cd modelo-entalpias-combustion
 ```
 

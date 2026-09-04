@@ -42,11 +42,10 @@ git commit -m "feat: estructura inicial del proyecto, configuracion de entorno, 
 3. Asigna el nombre: `modelo-entalpias-combustion`.
 4. **IMPORTANTE:** Déjalo en modo **Public** y **NO marques** ninguna casilla de "Add a README file", "Add .gitignore" ni "Choose a license" (porque ya los creamos nosotros localmente).
 5. Haz clic en **Create repository**.
-6. Copia la URL de tu repositorio (por ejemplo: `https://github.com/tu-usuario/modelo-entalpias-combustion.git`).
-7. En la terminal de PyCharm, ejecuta:
+6. La URL oficial de tu repositorio es: `https://github.com/karolcamachol29-sudo/modelo-entalpias-combustion.git`.
+7. En la terminal de PyCharm, el remoto ya está configurado y vinculado:
 ```bash
 git branch -M main
-git remote add origin https://github.com/tu-usuario/modelo-entalpias-combustion.git
 git push -u origin main
 ```
 
