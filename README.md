@@ -9,7 +9,7 @@
 
 ## 📌 Descripción del Proyecto
 
-Este repositorio contiene el desarrollo, reproducción, auditoría y validación de modelos de **Machine Learning** aplicados a la predicción precisa de la **entalpía estándar de combustión** ($\Delta H_c^\circ$) de compuestos orgánicos a partir de descriptores moleculares y **Teoría de Grafos Químicos**.
+Este repositorio contiene el desarrollo, reproducción, auditoría y validación de modelos de **Machine Learning** aplicados a la predicción precisa de la **entalpía estándar de combustión** ($\Delta H_c^\circ$) de compuestos orgánicos a partir de descriptores moleculares y propiedades fisicoquímicas.
 
 El proyecto forma parte de la formación práctica y científica de **Karol Paola Camacho López** en la Facultad de Ingeniería Química de la **Benemérita Universidad Autónoma de Puebla (BUAP)**, integrando principios de termodinámica clásica, calorimetría experimental y ciencia de datos predictiva, como plataforma de preparación para el modelado de sistemas en **equilibrio químico** (con fecha de inicio el 10 de diciembre de 2026).
 
@@ -18,7 +18,7 @@ El proyecto forma parte de la formación práctica y científica de **Karol Paol
 ## 🎯 Objetivos Principales
 
 1. **Comprensión Físico-Química:** Relacionar el origen experimental calorimétrico de la entalpía (bomba de Mahler a volumen constante, $Q_v = \Delta U_c$, correcciones de Washburn y conversión a $\Delta H_c^\circ$) con la representación computacional de las moléculas.
-2. **Representación Molecular:** Mapear cadenas de texto **SMILES** a grafos químicos para extraer descriptores topológicos (índices de Wiener, Estrada, Gutman y centralidades).
+2. **Representación Molecular:** Mapear cadenas de texto **SMILES** y fórmulas químicas a descriptores moleculares y propiedades fisicoquímicas cuantitativas (masa molar, conteos de heteroátomos, enlaces y balance estequiométrico).
 3. **Reproducción de Modelos:** Replicar con rigor y reproducibilidad el modelo ganador reportado en la literatura del grupo de investigación (Random Forest Regressor, $R^2 \approx 0.981$, $\text{MAE} \approx 287.6\text{ kJ/mol}$).
 4. **Validación Científica:** Evaluar el sesgo y la varianza mediante validación cruzada ($k$-fold) y análisis detallado de gráficos de residuales ($y_{\text{exp}} - y_{\text{pred}}$) en lugar de depender únicamente de la métrica $R^2$.
 
@@ -81,13 +81,11 @@ pip install -r requirements.txt
 
 El pipeline de predicción implementado sigue la secuencia:
 
-$$\text{Molécula (SMILES)} \longrightarrow \text{Grafo Químico } G(V,E) \longrightarrow \text{Vector de Descriptores } \mathbf{x} \longrightarrow \text{Pipeline Scikit-Learn} \longrightarrow \widehat{\Delta H_c^\circ}$$
+$$\text{Molécula (SMILES / Fórmula)} \longrightarrow \text{Vector de Descriptores Moleculares } \mathbf{x} \longrightarrow \text{Pipeline Scikit-Learn} \longrightarrow \widehat{\Delta H_c^\circ}$$
 
-### Descriptores Topológicos Centrales:
-* **Índice de Wiener ($W$):** Suma de distancias topológicas mínimas en la matriz de distancias molecular:
-  $$W = \frac{1}{2} \sum_{i=1}^n \sum_{j=1}^n D_{ij}$$
-* **Índice de Estrada ($EE$):** Basado en los autovalores $\lambda_i$ de la matriz de adyacencia del grafo:
-  $$EE = \sum_{i=1}^n e^{\lambda_i}$$
+### Descriptores Moleculares y Fisicoquímicos Principales:
+* **Propiedades Constitutivas:** Masa molar ($M$), número de átomos de carbono ($n_C$), hidrógeno ($n_H$), oxígeno ($n_O$), nitrógeno ($n_N$) y demás heteroátomos.
+* **Propiedades Estructurales y Termoquímicas:** Enlaces rotables, conteo de enlaces simples/dobles/aromáticos, área superficial polar topológica (TPSA) y coeficientes de combustión estequiométrica ($n_{\text{O}_2}$).
 
 ---
 

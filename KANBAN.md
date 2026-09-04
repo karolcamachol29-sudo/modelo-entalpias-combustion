@@ -1,7 +1,7 @@
 # 📌 TABLERO KANBAN AUTOMATIZADO
 **Proyecto:** Predicción de Entalpías de Combustión Mediante Machine Learning  
 **Responsable:** Karol Paola Camacho López (Facultad de Ingeniería Química — BUAP)  
-**Última Sincronización:** 2026-09-04 07:41:01  
+**Última Sincronización:** 2026-09-04 01:45:00  
 **Progreso General:** 16.7% (2/12 entregables cerrados)
 
 ---
@@ -16,12 +16,12 @@
 - **Etiquetas:** `#ipynb` `[Backlog]` `@data-engineering`
 
 ---
-### [ACT05] Cálculo de Descriptores de Grafos Químicos (Wiener y Estrada)
+### [ACT05] Cálculo de Descriptores Moleculares y Fisicoquímicos
 - **Fase:** `F2-EDA` | **Progreso:** `0%`
-- **Descripción:** Transformación de cadenas SMILES a grafos moleculares, generación de matrices de adyacencia y distancia, y cálculo de índices topológicos (Wiener, Estrada, Gutman).
+- **Descripción:** Extracción sistemática de descriptores moleculares a partir de cadenas SMILES y composición química (masa molar, conteos de heteroátomos, número de enlaces, TPSA y balance estequiométrico).
 - **Plazo:** `2026-09-19` al `2026-09-26`<br>**Depende de:** ACT03
-- **Archivo de Cierre Requerido:** `F2-EDA_ACT05_SCR_calculo_indices_grafos_v1.0_FINAL.py`
-- **Etiquetas:** `#py` `[Backlog]` `@grafos-moleculares`
+- **Archivo de Cierre Requerido:** `F2-EDA_ACT05_SCR_calculo_descriptores_moleculares_v1.0_FINAL.py`
+- **Etiquetas:** `#py` `[Backlog]` `@descriptores-moleculares`
 
 ---
 ### [ACT06] Entrenamiento de Modelos Base (OLS, Ridge y Lasso)
@@ -34,7 +34,7 @@
 ---
 ### [ACT07] Implementación y Ajuste de Random Forest Regressor
 - **Fase:** `F3-MLB` | **Progreso:** `0%`
-- **Descripción:** Entrenamiento de ensamble de árboles (RandomForestRegressor) sobre descriptores topológicos, controlando max_depth y n_estimators para evitar overfitting.
+- **Descripción:** Entrenamiento de ensamble de árboles (RandomForestRegressor) sobre descriptores moleculares y fisicoquímicos, controlando max_depth y n_estimators para evitar overfitting.
 - **Plazo:** `2026-10-03` al `2026-10-10`<br>**Depende de:** ACT06
 - **Archivo de Cierre Requerido:** `F3-MLB_ACT07_SCR_random_forest_regressor_v1.0_FINAL.py`
 - **Etiquetas:** `#py` `[Backlog]` `@machine-learning`

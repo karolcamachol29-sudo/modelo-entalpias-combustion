@@ -23,7 +23,7 @@ def main():
     labels = [
         ("fase:F0-ENV", "003b70", "Fase 0: Setup y Entorno"),
         ("fase:F1-DAT", "1f77b4", "Fase 1: Datos y Curaduría"),
-        ("fase:F2-EDA", "ff7f0e", "Fase 2: Análisis Exploratorio y Grafos"),
+        ("fase:F2-EDA", "ff7f0e", "Fase 2: Análisis Exploratorio y Descriptores"),
         ("fase:F3-MLB", "2ca02c", "Fase 3: Machine Learning Base"),
         ("fase:F4-VAL", "d62728", "Fase 4: Validación y Residuales"),
         ("fase:F5-REP", "9467bd", "Fase 5: Reproducción Modelo Rector"),
@@ -37,7 +37,7 @@ def main():
         ("format:txt", "c9d1d9", "Archivo de texto plano"),
         ("area:termoquimica", "b60205", "Termodinámica y Calorimetría"),
         ("area:data-engineering", "0e8a16", "Ingeniería y Curaduría de Datos"),
-        ("area:grafos-moleculares", "5319e7", "Teoría de Grafos Químicos"),
+        ("area:descriptores-moleculares", "5319e7", "Descriptores Moleculares y Fisicoquímicos"),
         ("area:machine-learning", "1d76db", "Algoritmos de Machine Learning"),
         ("area:simulacion", "d93f0b", "Simulación de Procesos Químicos"),
         ("area:documentacion", "0052cc", "Reportes y Manuscritos"),
@@ -56,7 +56,7 @@ def main():
     # 2. Crear Hitos (Milestones) que representan el Roadmap nativo en GitHub
     milestones = [
         ("Hito F0: Setup y Fundamentos Termoquímicos", "2026-09-05T23:59:59Z", "Configuración del entorno digital, Git, ChemPy y checklist del viernes"),
-        ("Hito F1-F2: Curaduría de Datos y Grafos Químicos", "2026-09-26T23:59:59Z", "Depuración de base de datos, outliers e índices de Wiener/Estrada"),
+        ("Hito F1-F2: Curaduría de Datos y Descriptores Moleculares", "2026-09-26T23:59:59Z", "Depuración de base de datos, outliers y descriptores moleculares"),
         ("Hito F3-F4: Modelado Machine Learning y Validación", "2026-10-17T23:59:59Z", "Modelos lineales OLS/Ridge, Random Forest y análisis de residuales"),
         ("Hito F5-F6: Reproducción Modelo Rector y DWSIM", "2026-11-14T23:59:59Z", "Replicación de ACS Omega 2025 y simulación de combustión en DWSIM"),
         ("Hito F7: Transición al Proyecto de Equilibrio Químico", "2026-12-10T23:59:59Z", "Cálculo de Gibbs, Keq y manuscrito para el 10 de diciembre de 2026")
@@ -81,7 +81,7 @@ def main():
         if fase == "F0-ENV":
             return "Hito F0: Setup y Fundamentos Termoquímicos"
         elif fase in ["F1-DAT", "F2-EDA"]:
-            return "Hito F1-F2: Curaduría de Datos y Grafos Químicos"
+            return "Hito F1-F2: Curaduría de Datos y Descriptores Moleculares"
         elif fase in ["F3-MLB", "F4-VAL"]:
             return "Hito F3-F4: Modelado Machine Learning y Validación"
         elif fase in ["F5-REP", "F6-SIM"]:

@@ -22,7 +22,7 @@ gantt
 
     section F2-EDA
     Análisis Exploratorio de Datos (EDA) y Detección de Outliers (ACT04) :ACT04, 2026-09-12, 2026-09-19
-    Cálculo de Descriptores de Grafos Químicos (Wiener y Estrada) (ACT05) :ACT05, 2026-09-19, 2026-09-26
+    Cálculo de Descriptores Moleculares y Fisicoquímicos (ACT05) :ACT05, 2026-09-19, 2026-09-26
 
     section F3-MLB
     Entrenamiento de Modelos Base (OLS, Ridge y Lasso) (ACT06) :ACT06, 2026-09-26, 2026-10-03
@@ -52,7 +52,7 @@ gantt
 | `F0-ENV` | **ACT02** | Implementación de Utilidades Estequiométricas con ChemPy | `2026-09-05` | ✅ Completado | `F0-ENV_ACT02_SCR_funciones_chempy_v1.0_FINAL.py` |
 | `F1-DAT` | **ACT03** | Adquisición, Normalización y Auditoría del Dataset Crudo | `2026-09-12` | ⏳ En Proceso | `F1-DAT_ACT03_DAT_dataset_curado_v1.0_FINAL.csv` |
 | `F2-EDA` | **ACT04** | Análisis Exploratorio de Datos (EDA) y Detección de Outliers | `2026-09-19` | ⛔ Bloqueado | `F2-EDA_ACT04_NBK_exploracion_distribuciones_v1.0_FINAL.ipynb` |
-| `F2-EDA` | **ACT05** | Cálculo de Descriptores de Grafos Químicos (Wiener y Estrada) | `2026-09-26` | ⛔ Bloqueado | `F2-EDA_ACT05_SCR_calculo_indices_grafos_v1.0_FINAL.py` |
+| `F2-EDA` | **ACT05** | Cálculo de Descriptores Moleculares y Fisicoquímicos | `2026-09-26` | ⛔ Bloqueado | `F2-EDA_ACT05_SCR_calculo_descriptores_moleculares_v1.0_FINAL.py` |
 | `F3-MLB` | **ACT06** | Entrenamiento de Modelos Base (OLS, Ridge y Lasso) | `2026-10-03` | ⛔ Bloqueado | `F3-MLB_ACT06_NBK_modelos_lineales_baseline_v1.0_FINAL.ipynb` |
 | `F3-MLB` | **ACT07** | Implementación y Ajuste de Random Forest Regressor | `2026-10-10` | ⛔ Bloqueado | `F3-MLB_ACT07_SCR_random_forest_regressor_v1.0_FINAL.py` |
 | `F4-VAL` | **ACT08** | Validación Cruzada k-Fold y Análisis Gráfico de Residuales | `2026-10-17` | ⛔ Bloqueado | `F4-VAL_ACT08_NBK_diagnostico_residuales_v1.0_FINAL.ipynb` |
